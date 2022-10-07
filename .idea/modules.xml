@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/EMDirectory/EMDirectory.iml" filepath="$PROJECT_DIR$/EMDirectory/EMDirectory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EraseObject/EraseObject.iml" filepath="$PROJECT_DIR$/EraseObject/EraseObject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KTour1/KTour1.iml" filepath="$PROJECT_DIR$/KTour1/KTour1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KTour2/KTour2.iml" filepath="$PROJECT_DIR$/KTour2/KTour2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Life/Life.iml" filepath="$PROJECT_DIR$/Life/Life.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MergeList/MergeList.iml" filepath="$PROJECT_DIR$/MergeList/MergeList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Projects.iml" filepath="$PROJECT_DIR$/Projects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/quickSort/quickSort.iml" filepath="$PROJECT_DIR$/quickSort/quickSort.iml" />
+    </modules>
+  </component>
+</project>
