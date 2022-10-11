@@ -66,11 +66,34 @@ public class SinglyLinkedList
 
   public boolean remove(Object value)
   {
-   // code this
+    ListNode prev = null;
+    ListNode node = first;
+    while(!node.getValue().equals(value))
+    {
+      if (node==null)
+        return false;
+      prev = node;
+      node = node.getNext();
+    }
+    prev.setNext(node.getNext());
     return true;
   }
+
+  public void insert(Object value)
+  {
+    ListNode prev = null;
+    ListNode node = first;
+    if (value.compareTo(node.getValue())<0)
+    {
+      addFirst(value);
+    }
+    else if (value.compareTo(node.getValue())>0)
+    {
+
+    }
+  }
   
-  
+
   /**
    *  Print the contents of the entire linked list
    */
