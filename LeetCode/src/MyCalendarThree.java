@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 class MyCalendarThree {
     private ArrayList<int[]> times;
     public MyCalendarThree() {

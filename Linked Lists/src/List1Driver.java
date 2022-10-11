@@ -1,4 +1,4 @@
-public class Driver
+public class List1Driver
 {
     public static void main(String[] args)
     {
@@ -7,6 +7,7 @@ public class Driver
         demo.displayFirst();
         demo.displayLast();
         demo.print();
+        demo.getNodes();
 
     }
 }
