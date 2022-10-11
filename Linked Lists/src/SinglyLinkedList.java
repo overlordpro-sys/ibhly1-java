@@ -83,14 +83,24 @@ public class SinglyLinkedList
   {
     ListNode prev = null;
     ListNode node = first;
-    if (value.compareTo(node.getValue())<0)
+    if (value.compareTo(first.getValue())<0)
     {
       addFirst(value);
     }
-    else if (value.compareTo(node.getValue())>0)
+    else if (value.compareTo(last.getValue())>0)
     {
-
+      last = last.setNext(new ListNode(value, null));
     }
+    else
+    {
+      while(value.compareTo(node.getValue())>0)
+      {
+        prev = node;
+        node = node.getNext();
+      }
+      prev.setNext(new ListNode(value, node));
+    }
+
   }
   
 
