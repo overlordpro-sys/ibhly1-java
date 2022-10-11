@@ -7,6 +7,7 @@ public class Driver
         demo.displayFirst();
         demo.displayLast();
         demo.print();
+        demo.getNodes();
 
     }
 }

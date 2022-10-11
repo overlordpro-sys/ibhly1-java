@@ -31,12 +31,26 @@ public class SinglyLinkedList
    */
   public Object getFirst()
   {
-    return first;
+    if (first == null)
+    {
+      throw new NoSuchElementException();
+    }
+    else
+    {
+      return first.getValue();
+    }
   }
 
   public Object getLast()
   {
-    return last;
+    if (last == null)
+    {
+      throw new NoSuchElementException();
+    }
+    else
+    {
+      return last.getValue();
+    }
   }
 
 
@@ -133,7 +147,7 @@ public class SinglyLinkedList
    */
   public void printList()
   {
-    String list = "[";
+    String list = "";
 
     ListNode temp = first;  // start from the first node
     while (temp != null)
@@ -143,7 +157,6 @@ public class SinglyLinkedList
       if (temp != null)
         list += ", ";
     }
-    list += "]";
     System.out.print(list);
   }
 
