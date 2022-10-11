@@ -6,7 +6,6 @@ public class MergeListDriver {
 		LinkedList<Item> list = new LinkedList<Item>();
 		MergeList merger = new MergeList("file20.txt");
 		
-		merger.readData(list);
 		System.out.println("Before Sort:");
 		merger.printList(list);
 		

@@ -10,8 +10,8 @@
 
 public class Item implements Comparable{
 //public class Item{
-  private int myId;
-  private int myInv;
+  private final int myId;
+  private final int myInv;
 
   /**
    *  Constructor for the Item object

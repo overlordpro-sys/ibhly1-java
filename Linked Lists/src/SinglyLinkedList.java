@@ -12,14 +12,16 @@ import java.util.*;
 public class SinglyLinkedList
 {
   private ListNode first;  // first element
+  private ListNode last;
   /**
    *  Constructor for the SinglyLinkedList object
    *  Generates an empty list.
    */
   public SinglyLinkedList()
   {
-    first = null;   
-    
+    first = null;
+    last = null;
+
   }
 
   /**
@@ -29,14 +31,14 @@ public class SinglyLinkedList
    */
   public Object getFirst()
   {
-    if (first == null)
-    {
-      throw new NoSuchElementException();
-    }
-    else
-      return first.getValue();
-  }  
-  
+    return first;
+  }
+
+  public Object getLast()
+  {
+    return last;
+  }
+
 
   /**
    *  Inserts the given element at the beginning of this list.
@@ -47,9 +49,24 @@ public class SinglyLinkedList
   {
     // note the order that things happen:
     // head is parameter, then assigned
-    
-    // code this 
+
+    // code this
     first = new ListNode(value, first);
+  }
+
+  public void addLast(Object value)
+  {
+    if (first == null)
+    {
+      first = new ListNode(value);
+      last = first;
+    }
+    else
+    {
+      last.setNext(new ListNode(value));
+      last = last.getNext();
+    }
+
   }
 
   public ListNode find(Object value)
@@ -79,44 +96,31 @@ public class SinglyLinkedList
     return true;
   }
 
-  public void insert(Object value)
-  {
-    ListNode prev = null;
-    ListNode node = first;
-    if (value.compareTo(first.getValue())<0)
-    {
-      addFirst(value);
-    }
-    else if (value.compareTo(last.getValue())>0)
-    {
-      last = last.setNext(new ListNode(value, null));
-    }
-    else
-    {
-      while(value.compareTo(node.getValue())>0)
-      {
-        prev = node;
-        node = node.getNext();
-      }
-      prev.setNext(new ListNode(value, node));
-    }
-
-  }
-  
-
   /**
    *  Print the contents of the entire linked list
    */
-  public void printList()
+//  public void printList()
+//  {
+//    // code this
+//    ListNode current = first;
+//    int num = 1;
+//    while (current != null)
+//    {
+//      System.out.println(num +": " + current.getValue());
+//      current = current.getNext();
+//    }
+//  }
+
+  public int size()
   {
-      // code this
+    int count = 0;
     ListNode current = first;
-    int num = 1;
     while (current != null)
     {
-      System.out.println(num +": " + current.getValue());
+      count++;
       current = current.getNext();
     }
+    return count;
   }
 
   /**
@@ -127,20 +131,20 @@ public class SinglyLinkedList
    *
    * @return    string representation of this list
    */
-  public String toString()
+  public void printList()
   {
-    String s = "[";
+    String list = "[";
 
     ListNode temp = first;  // start from the first node
     while (temp != null)
     {
-      s += temp.getValue(); // append the data
+      list += temp.getValue(); // append the data
       temp = temp.getNext();      // go to next node
       if (temp != null)
-        s += ", ";
+        list += ", ";
     }
-    s += "]";
-    return s;
-  }  
-  
+    list += "]";
+    System.out.print(list);
+  }
+
 }

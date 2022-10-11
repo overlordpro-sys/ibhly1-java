@@ -19,7 +19,7 @@ public class ListDemo
   public void createList()
   {
     for (int k = 1; k < 21; k++){
-      myList.addLast(new Integer(k));
+      myList.addLast(Integer.valueOf(k));
     }
   }
 

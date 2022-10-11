@@ -105,16 +105,13 @@ public class MergeList
 		}
 		return reversed;
 	}
-	
-	public void printList(LinkedList<Item> list)
-	{
+
+	public void printList(LinkedList<Item> list) {
 		Iterator<Item> iter = list.iterator();
-		while (iter.hasNext())
-		{
+		while (iter.hasNext()) {
 			Item obj = iter.next();
-			System.out.printf("%5s%16s","Id: "+obj.getId(),"Inventory: "+obj.getInv()+"\n");
+			System.out.printf("%5s%16s", "Id: " + obj.getId(), "Inventory: " + obj.getInv() + "\n");
 		}
 		System.out.println();
 	}
-	
 }
