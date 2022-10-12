@@ -65,7 +65,7 @@ public class Item implements Comparable{
    * @return              true if equal, false otherwise
    */
    
-  public boolean equals(Item other){
+  public boolean equals(Object other){
     return this.compareTo(other) == 0;
   }
 
