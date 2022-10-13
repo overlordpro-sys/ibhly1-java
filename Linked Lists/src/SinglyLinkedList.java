@@ -82,42 +82,46 @@ public class SinglyLinkedList
     }
 
   }
-
+//fix later
   public ListNode find(Object value)
   {
     ListNode node = first;
-    while(!node.getValue().equals(value))
+    if (node==null)
+      return null;
+    while(node != null && !(node.getValue().equals(value)))
     {
-      if (node==null)
-        return null;
       node = node.getNext();
     }
+    if (node == null)
+      return null;
     return node;
   }
   public void insert(Object value)
   {
+    Comparable compareVal = (Comparable)value;
     if (first == null)
     {
       first = new ListNode(value);
       last = first;
     }
+    else if (compareVal.compareTo(first.getValue()) < 0)
+    {
+      addFirst(value);
+    }
+    else if (compareVal.compareTo(last.getValue()) > 0)
+    {
+      addLast(value);
+    }
     else
     {
       ListNode front = first;
       ListNode back = null;
-      while (front != null && value.compareTo(front.getValue()) > 0)
+      while (front != null && compareVal.compareTo(front.getValue()) > 0)
       {
         back = front;
         front = front.getNext();
       }
-      if (front == null)
-      {
-        addLast(value);
-      }
-      else
-      {
-        back.setNext(new ListNode(value, front));
-      }
+      back.setNext(new ListNode(value, front));
     }
   }
   public boolean remove(Object value)
@@ -180,9 +184,29 @@ public class SinglyLinkedList
       list += temp.getValue(); // append the data
       temp = temp.getNext();      // go to next node
       if (temp != null)
-        list += ", ";
+        list += " | ";
     }
     System.out.print(list);
+  }
+
+  public void clear()
+  {
+    first = null;
+    last = null;
+  }
+
+  public void printBackwards()
+  {
+    backwards(first);
+  }
+
+  public void backwards(ListNode node)
+  {
+    if (node!= null)
+    {
+      backwards(node.getNext());
+      System.out.print(node.getValue() + " ");
+    }
   }
 
 }
