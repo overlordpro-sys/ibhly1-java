@@ -126,17 +126,24 @@ public class SinglyLinkedList
   }
   public boolean remove(Object value)
   {
-    ListNode prev = null;
-    ListNode node = first;
-    while(!node.getValue().equals(value))
-    {
-      if (node==null)
-        return false;
-      prev = node;
-      node = node.getNext();
+    if (first.getValue().equals(value)) {
+      first = first.getNext();
+      return true;
     }
-    prev.setNext(node.getNext());
-    return true;
+
+      ListNode prev = first;
+      ListNode node = first;
+      while(node != null && !node.getValue().equals(value))
+      {
+        prev = node;
+        node = node.getNext();
+      }
+      if (node == null)
+      {
+        return false;
+      }
+      prev.setNext(node.getNext());
+      return true;
   }
 
   /**
