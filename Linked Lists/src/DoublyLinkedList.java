@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.NoSuchElementException;
 
 /**
  *  Implementation of lists, using singly linked elements.
@@ -9,15 +9,15 @@ import java.util.*;
  * Modified by Jason Quesenberry and Nancy Quesenberry
  * February 9,2006
  */
-public class SinglyLinkedList
+public class DoublyLinkedList
 {
-  private ListNode first;  // first element
-  private ListNode last;
+  private DListNode first;  // first element
+  private DListNode last;
   /**
    *  Constructor for the SinglyLinkedList object
    *  Generates an empty list.
    */
-  public SinglyLinkedList()
+  public DoublyLinkedList()
   {
     first = null;
     last = null;
@@ -65,27 +65,27 @@ public class SinglyLinkedList
     // head is parameter, then assigned
 
     // code this
-    first = new ListNode(value, first);
+    first = new DListNode(value, first, null);
   }
 
   public void addLast(Object value)
   {
     if (first == null)
     {
-      first = new ListNode(value);
-      last = first;
+      addFirst(value);
     }
     else
     {
-      last.setNext(new ListNode(value));
-      last = last.getNext();
+      last = new DListNode(value, null, last);
     }
 
   }
 //fix later
-  public ListNode find(Object value)
+  public DListNode find(Object value)
   {
-    ListNode node = first;
+    if (first==null)
+      return null;
+    DListNode node = first;
     while(node != null && !(node.getValue().equals(value)))
     {
       node = node.getNext();
@@ -97,8 +97,7 @@ public class SinglyLinkedList
     Comparable compareVal = (Comparable)value;
     if (first == null)
     {
-      first = new ListNode(value);
-      last = first;
+      addFirst(value);
     }
     else if (compareVal.compareTo(first.getValue()) < 0)
     {
@@ -110,16 +109,18 @@ public class SinglyLinkedList
     }
     else
     {
-      ListNode front = first;
-      ListNode back = null;
+      DListNode front = first;
+      DListNode back = null;
       while (front != null && compareVal.compareTo(front.getValue()) > 0)
       {
         back = front;
         front = front.getNext();
       }
-      back.setNext(new ListNode(value, front));
+      back.setNext(new DListNode(value, front, back));
+      front.setPrevious(back.getNext());
     }
   }
+  // left off here
   public boolean remove(Object value)
   {
     if (first == null)
@@ -130,8 +131,8 @@ public class SinglyLinkedList
       first = first.getNext();
       return true;
     }
-    ListNode front = first;
-    ListNode back = null;
+    DListNode front = first;
+    DListNode back = null;
     while(front != null && !front.getValue().equals(value))
     {
       back = front;
@@ -148,7 +149,7 @@ public class SinglyLinkedList
   public int size()
   {
     int count = 0;
-    ListNode node = first;
+    DListNode node = first;
     while (node != null)
     {
       count++;
@@ -169,7 +170,7 @@ public class SinglyLinkedList
   {
     String list = "Singly Linked List: ";
 
-    ListNode temp = first;  // start from the first node
+    DListNode temp = first;  // start from the first node
     list+= "\n";
     while (temp != null)
     {
@@ -193,7 +194,7 @@ public class SinglyLinkedList
     System.out.println();
   }
 
-  private void backwards(ListNode node)
+  private void backwards(DListNode node)
   {
     if (node!= null)
     {

@@ -46,6 +46,6 @@ public class ListDemo
   
   public void getNodes()
   {
-      System.out.println("Number of List Nodes: "+myList.size()); 
+      System.out.println("Nodes: "+myList.size());
   }
 }
