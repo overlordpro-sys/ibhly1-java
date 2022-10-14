@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
  * Modified by Jason Quesenberry and Nancy Quesenberry
  * February 9,2006
  */
-public class DoublyLinkedList
+public class DOrderedList
 {
   private DListNode first;  // first element
   private DListNode last;
@@ -17,7 +17,7 @@ public class DoublyLinkedList
    *  Constructor for the SinglyLinkedList object
    *  Generates an empty list.
    */
-  public DoublyLinkedList()
+  public DOrderedList()
   {
     first = null;
     last = null;
@@ -65,7 +65,16 @@ public class DoublyLinkedList
     // head is parameter, then assigned
 
     // code this
-    first = new DListNode(value, first, null);
+    if (first == null)
+    {
+      first = new DListNode(value, null, null);
+      last = first;
+    }
+    else
+    {
+      first.setPrevious(new DListNode(value, first, null));
+      first = first.getPrevious();
+    }
   }
 
   public void addLast(Object value)
@@ -76,7 +85,8 @@ public class DoublyLinkedList
     }
     else
     {
-      last = new DListNode(value, null, last);
+      last.setNext(new DListNode(value, null, last));
+      last = last.getNext();
     }
 
   }
@@ -95,11 +105,7 @@ public class DoublyLinkedList
   public void insert(Object value)
   {
     Comparable compareVal = (Comparable)value;
-    if (first == null)
-    {
-      addFirst(value);
-    }
-    else if (compareVal.compareTo(first.getValue()) < 0)
+    if (first == null || compareVal.compareTo(first.getValue()) < 0)
     {
       addFirst(value);
     }
@@ -111,7 +117,7 @@ public class DoublyLinkedList
     {
       DListNode front = first;
       DListNode back = null;
-      while (front != null && compareVal.compareTo(front.getValue()) > 0)
+      while (front != null && compareVal.compareTo(front.getValue()) >= 0)
       {
         back = front;
         front = front.getNext();
@@ -120,7 +126,6 @@ public class DoublyLinkedList
       front.setPrevious(back.getNext());
     }
   }
-  // left off here
   public boolean remove(Object value)
   {
     if (first == null)
@@ -142,7 +147,15 @@ public class DoublyLinkedList
     {
       return false;
     }
-    back.setNext(front.getNext());
+    if (front.getNext() == null)
+    {
+      back.setNext(null);
+    }
+    else
+    {
+      back.setNext(front.getNext());
+      back.getNext().setPrevious(back);
+    }
     return true;
   }
 
@@ -168,18 +181,15 @@ public class DoublyLinkedList
    */
   public void printList()
   {
-    String list = "Singly Linked List: ";
-
-    DListNode temp = first;  // start from the first node
-    list+= "\n";
-    while (temp != null)
+    DListNode node = first;
+    int count = 1;
+    while (node != null)
     {
-      list += temp.getValue(); // append the data
-      temp = temp.getNext();      // go to next node
-      if (temp != null)
-        list += "\n";
+      System.out.println(count + ": " + node.getValue());
+      node = node.getNext();
+      count++;
     }
-    System.out.print(list);
+    System.out.print("\n");
   }
 
   public void clear()
@@ -190,17 +200,15 @@ public class DoublyLinkedList
 
   public void printBackwards()
   {
-    backwards(first);
-    System.out.println();
-  }
-
-  private void backwards(DListNode node)
-  {
-    if (node!= null)
+    int count = 1;
+    DListNode node = last;
+    while (node != null)
     {
-      backwards(node.getNext());
-      System.out.print(node.getValue() + "\n");
+      System.out.println(count + ": " + node.getValue());
+      node = node.getPrevious();
+      count++;
     }
+    System.out.print("\n");
   }
 
 }
