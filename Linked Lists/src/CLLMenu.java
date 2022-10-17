@@ -12,9 +12,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class DOrderedListMenu
+public class CLLMenu
 {
-    public void testFind(DOrderedList list)
+    public void testFind(CircularlyLinkedList list)
     {
         int idToFind;
         DListNode location;
@@ -36,7 +36,7 @@ public class DOrderedListMenu
         }
     }
 
-    public void testDelete(DOrderedList list)
+    public void testDelete(CircularlyLinkedList list)
     {
         int idToDelete;
         boolean success;
@@ -62,11 +62,11 @@ public class DOrderedListMenu
         }
     }
 
-    public void loadData(DOrderedList list)
+    public void loadData(CircularlyLinkedList list)
     {
         Scanner inFile;
 
-        String fileName = "file10.txt";
+        String fileName = "file3.txt";
         int id, inv;
 
         try{
@@ -77,13 +77,14 @@ public class DOrderedListMenu
                 id = inFile.nextInt();
                 inv = inFile.nextInt();
                 list.insert(new Item(id, inv));
+                System.out.println("Item Inserted: " + id + " " + inv);
             }
         }catch(IOException i){
             System.out.println("Error: " + i.getMessage());
         }
     }
 
-    public void addItem(DOrderedList head)
+    public void addItem(CircularlyLinkedList head)
     {
         boolean run = true;
 
@@ -105,7 +106,7 @@ public class DOrderedListMenu
         }
     }
 
-    public void mainMenu (DOrderedList head)
+    public void mainMenu (CircularlyLinkedList head)
     {
         String choice;
         Scanner console = new Scanner(System.in);

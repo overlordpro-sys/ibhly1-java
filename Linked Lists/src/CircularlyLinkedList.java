@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
  * Modified by Jason Quesenberry and Nancy Quesenberry
  * February 9,2006
  */
-public class DOrderedList
+public class CircularlyLinkedList
 {
   private DListNode first;  // first element
   private DListNode last;
@@ -17,7 +17,7 @@ public class DOrderedList
    *  Constructor for the SinglyLinkedList object
    *  Generates an empty list.
    */
-  public DOrderedList()
+  public CircularlyLinkedList()
   {
     first = null;
     last = null;
@@ -52,8 +52,15 @@ public class DOrderedList
     }
   }
 
+  public DListNode getFirstNode()
+  {
+    return first;
+  }
 
-
+  public DListNode getLastNode()
+  {
+    return last;
+  }
 
   /**
    *  Inserts the given element at the beginning of this list.
@@ -69,12 +76,19 @@ public class DOrderedList
     if (first == null)
     {
       first = new DListNode(value, null, null);
+      first.setNext(first);
+      first.setPrevious(first);
       last = first;
     }
     else
     {
-      first.setPrevious(new DListNode(value, first, null));
+      first.setPrevious(new DListNode(value, first, first.getPrevious()));
+      if (first.getNext() == first)
+      {
+        first.setNext(first.getPrevious());
+      }
       first = first.getPrevious();
+      last.setNext(first);
     }
   }
 
@@ -86,8 +100,9 @@ public class DOrderedList
     }
     else
     {
-      last.setNext(new DListNode(value, null, last));
+      last.setNext(new DListNode(value, first, last));
       last = last.getNext();
+      first.setPrevious(last);
     }
 
   }
@@ -118,7 +133,7 @@ public class DOrderedList
     {
       DListNode front = first;
       DListNode back = null;
-      while (front != null && compareVal.compareTo(front.getValue()) >= 0)
+      while (front != last && compareVal.compareTo(front.getValue()) >= 0)
       {
         back = front;
         front = front.getNext();
@@ -134,23 +149,20 @@ public class DOrderedList
       return false;
     }
     if (first.getValue().equals(value)) {
+      last.setNext(first.getNext());
       first = first.getNext();
       return true;
     }
     DListNode front = first;
     DListNode back = null;
-    while(front != null && !front.getValue().equals(value))
+    while(front != last && !front.getValue().equals(value))
     {
       back = front;
       front = front.getNext();
     }
-    if (front == null)
+    if (front == last)
     {
       return false;
-    }
-    if (front.getNext() == null)
-    {
-      back.setNext(null);
     }
     else
     {
@@ -164,7 +176,7 @@ public class DOrderedList
   {
     int count = 0;
     DListNode node = first;
-    while (node != null)
+    while (node != last)
     {
       count++;
       node = node.getNext();
@@ -180,16 +192,18 @@ public class DOrderedList
    *
    * @return    string representation of this list
    */
+  //FIX THIS NOW DO WHILE NOT WORKING
   public void printList()
   {
     DListNode node = first;
     int count = 1;
-    while (node != null)
-    {
+    do {
       System.out.println(count + ": " + node.getValue());
       node = node.getNext();
       count++;
     }
+    while (node != last.getNext());
+
     System.out.print("\n");
   }
 
@@ -203,12 +217,13 @@ public class DOrderedList
   {
     int count = 1;
     DListNode node = last;
-    while (node != null)
+    do
     {
       System.out.println(count + ": " + node.getValue());
       node = node.getPrevious();
       count++;
     }
+    while (node != first.getPrevious());
     System.out.print("\n");
   }
 
