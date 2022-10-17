@@ -105,11 +105,11 @@ public class DOrderedList
   public void insert(Object value)
   {
     Comparable compareVal = (Comparable)value;
-    if (first == null || compareVal.compareTo(first.getValue()) < 0)
+    if (first == null || compareVal.compareTo(first.getValue()) <= 0)
     {
       addFirst(value);
     }
-    else if (compareVal.compareTo(last.getValue()) > 0)
+    else if (compareVal.compareTo(last.getValue()) >= 0)
     {
       addLast(value);
     }
