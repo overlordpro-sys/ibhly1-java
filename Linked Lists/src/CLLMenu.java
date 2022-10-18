@@ -66,7 +66,7 @@ public class CLLMenu
     {
         Scanner inFile;
 
-        String fileName = "file3.txt";
+        String fileName = "file10.txt";
         int id, inv;
 
         try{
@@ -77,7 +77,6 @@ public class CLLMenu
                 id = inFile.nextInt();
                 inv = inFile.nextInt();
                 list.insert(new Item(id, inv));
-                System.out.println("Item Inserted: " + id + " " + inv);
             }
         }catch(IOException i){
             System.out.println("Error: " + i.getMessage());

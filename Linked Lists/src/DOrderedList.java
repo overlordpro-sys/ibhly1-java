@@ -133,8 +133,24 @@ public class DOrderedList
     {
       return false;
     }
-    if (first.getValue().equals(value)) {
-      first = first.getNext();
+    if (first.getValue().equals(value))
+    {
+      if (first.getNext() == null)
+      {
+        first = null;
+        last = null;
+      }
+      else
+      {
+        first = first.getNext();
+        first.setPrevious(null);
+      }
+      return true;
+    }
+    if (last.getValue().equals(value))
+    {
+      last = last.getPrevious();
+      last.setNext(null);
       return true;
     }
     DListNode front = first;

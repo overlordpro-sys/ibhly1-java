@@ -28,29 +28,6 @@ public class CircularlyLinkedList
    *
    * @return  the first element in the linked list.
    */
-  public Object getFirst()
-  {
-    if (first == null)
-    {
-      throw new NoSuchElementException();
-    }
-    else
-    {
-      return first.getValue();
-    }
-  }
-
-  public Object getLast()
-  {
-    if (last == null)
-    {
-      throw new NoSuchElementException();
-    }
-    else
-    {
-      return last.getValue();
-    }
-  }
 
   public DListNode getFirstNode()
   {
@@ -106,16 +83,19 @@ public class CircularlyLinkedList
     }
 
   }
-//fix later
   public DListNode find(Object value)
   {
     if (first==null)
       return null;
     DListNode node = first;
-    while(node != null && !(node.getValue().equals(value)))
+    if (last.getValue().equals(value))
+      return node;
+    while(node != last && !(node.getValue().equals(value)))
     {
       node = node.getNext();
     }
+    if (node==last)
+      return null;
     return node;
   }
   public void insert(Object value)
@@ -132,7 +112,7 @@ public class CircularlyLinkedList
     else
     {
       DListNode front = first;
-      DListNode back = null;
+      DListNode back = first.getPrevious();
       while (front != last && compareVal.compareTo(front.getValue()) >= 0)
       {
         back = front;
@@ -154,14 +134,19 @@ public class CircularlyLinkedList
       last.setPrevious(first);
       return true;
     }
+    if (last.getValue().equals(value)) {
+      last = last.getPrevious();
+      first.setPrevious(last);
+      return true;
+    }
     DListNode front = first;
-    DListNode back = null;
+    DListNode back = first.getPrevious();
     while(front != last.getNext() && !front.getValue().equals(value))
     {
       back = front;
       front = front.getNext();
     }
-    if (front == last)
+    if (front == last.getNext())
     {
       return false;
     }
@@ -176,11 +161,15 @@ public class CircularlyLinkedList
   public int size()
   {
     int count = 0;
-    DListNode node = first;
-    while (node != last)
+    if (first != null)
     {
+      DListNode node = first;
+      while (node != last)
+      {
+        count++;
+        node = node.getNext();
+      }
       count++;
-      node = node.getNext();
     }
     return count;
   }
@@ -193,18 +182,19 @@ public class CircularlyLinkedList
    *
    * @return    string representation of this list
    */
-  //FIX THIS NOW DO WHILE NOT WORKING
   public void printList()
   {
-    DListNode node = first;
-    int count = 1;
-    do {
-      System.out.println(count + ": " + node.getValue());
-      node = node.getNext();
-      count++;
+    if (first!=null)
+    {
+      DListNode node = first;
+      int count = 1;
+      do {
+        System.out.println(count + ": " + node.getValue());
+        node = node.getNext();
+        count++;
+      }
+      while (node != last.getNext());
     }
-    while (node != last.getNext());
-
     System.out.print("\n");
   }
 
@@ -216,16 +206,16 @@ public class CircularlyLinkedList
 
   public void printBackwards()
   {
-    int count = 1;
-    DListNode node = last;
-    do
-    {
-      System.out.println(count + ": " + node.getValue());
-      node = node.getPrevious();
-      count++;
+    if (last!=null) {
+      int count = 1;
+      DListNode node = last;
+      do {
+        System.out.println(count + ": " + node.getValue());
+        node = node.getPrevious();
+        count++;
+      }
+      while (node != first.getPrevious());
+      System.out.print("\n");
     }
-    while (node != first.getPrevious());
-    System.out.print("\n");
   }
-
 }
