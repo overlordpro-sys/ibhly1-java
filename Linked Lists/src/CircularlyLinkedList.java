@@ -151,11 +151,12 @@ public class CircularlyLinkedList
     if (first.getValue().equals(value)) {
       last.setNext(first.getNext());
       first = first.getNext();
+      last.setPrevious(first);
       return true;
     }
     DListNode front = first;
     DListNode back = null;
-    while(front != last && !front.getValue().equals(value))
+    while(front != last.getNext() && !front.getValue().equals(value))
     {
       back = front;
       front = front.getNext();
