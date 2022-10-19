@@ -89,7 +89,7 @@ public class CircularlyLinkedList
       return null;
     DListNode node = first;
     if (last.getValue().equals(value))
-      return node;
+      return last;
     while(node != last && !(node.getValue().equals(value)))
     {
       node = node.getNext();
@@ -128,25 +128,37 @@ public class CircularlyLinkedList
     {
       return false;
     }
-    if (first.getValue().equals(value)) {
-      last.setNext(first.getNext());
-      first = first.getNext();
-      last.setPrevious(first);
+    if (first.getValue().equals(value))
+    {
+      if (first == last)
+      {
+        first = null;
+        last = null;
+      }
+      else
+      {
+        last.setNext(first.getNext());
+        first = first.getNext();
+        first.setPrevious(last);
+      }
+
       return true;
     }
-    if (last.getValue().equals(value)) {
+    if (last.getValue().equals(value))
+    {
       last = last.getPrevious();
       first.setPrevious(last);
+      last.setNext(first);
       return true;
     }
     DListNode front = first;
     DListNode back = first.getPrevious();
-    while(front != last.getNext() && !front.getValue().equals(value))
+    while(front != last && !front.getValue().equals(value))
     {
       back = front;
       front = front.getNext();
     }
-    if (front == last.getNext())
+    if (front == last)
     {
       return false;
     }

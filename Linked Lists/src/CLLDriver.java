@@ -25,9 +25,15 @@ public class CLLDriver
         System.out.println("Previous Value: "+node.getPrevious().getValue());
         System.out.println("Next Value: "+node.getNext().getValue());
 
-        cList = new CircularlyLinkedList();
-        cList.addLast(new Item(40, 60));
+      //  cList = new CircularlyLinkedList();
+        cList.addLast(new Item(80, 60));
         node = cList.getLastNode();
+        System.out.println("Value: "+node.getValue());
+        System.out.println("Previous Value: "+node.getPrevious().getValue());
+        System.out.println("Next Value: "+node.getNext().getValue());
+
+        cList.addFirst(new Item(20, 60));
+         node = cList.getFirstNode();
         System.out.println("Value: "+node.getValue());
         System.out.println("Previous Value: "+node.getPrevious().getValue());
         System.out.println("Next Value: "+node.getNext().getValue());
