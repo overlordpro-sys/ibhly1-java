@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Binary Search Trees/Binary Search Trees.iml" filepath="$PROJECT_DIR$/Binary Search Trees/Binary Search Trees.iml" />
       <module fileurl="file://$PROJECT_DIR$/EMDirectory/EMDirectory.iml" filepath="$PROJECT_DIR$/EMDirectory/EMDirectory.iml" />
       <module fileurl="file://$PROJECT_DIR$/EraseObject/EraseObject.iml" filepath="$PROJECT_DIR$/EraseObject/EraseObject.iml" />
       <module fileurl="file://$PROJECT_DIR$/KTour1/KTour1.iml" filepath="$PROJECT_DIR$/KTour1/KTour1.iml" />
