@@ -35,51 +35,57 @@ public class BinarySearchTree
         // post: next added to tree so as to preserve binary search tree
         //
         if (root == null)
-        {
-            return null;
-        }
+            return new TreeNode(next);
         Comparable value = (Comparable)root.getValue();
         if (value.compareTo(next)>=0)
         {
             root.setRight(insertHelper(root.getRight(), next));
             return root;
         }
-        else if (value.compareTo(next)<0)
-        {
-            root.setLeft(insertHelper(root.getLeft(), next));
-            return root;
-        }
-
-
-
+        root.setLeft(insertHelper(root.getLeft(), next));
+        return root;
     }
 
     public Object find(Comparable target)
     {
-        //
+        if (myRoot == null)
+            return null;
+        else
+            return findHelper(myRoot, target);
     }
 
     private Object findHelper(TreeNode root, Comparable target)
     {
-        System.out.println("To be implemented in Lab Assignment AB30.2")
-        ;
-        return null;
+        if (root == null)
+            return null;
+        Comparable value = (Comparable)root.getValue();
+        if (value.compareTo(target) == 0)
+            return root.getValue();
+        else if (value.compareTo(target) > 0)
+            return findHelper(root.getRight(), target);
+        else
+            return findHelper(root.getLeft(), target);
     }
 
     public int countNodes()
     {
-        //
+        return countNodesHelper(myRoot);
     }
 
     private int countNodesHelper(TreeNode root)
     {
-        //
+        if (root == null)
+            return 0;
+        else
+            return 1 + countNodesHelper(root.getLeft()) +
+                countNodesHelper(root.getRight());
     }
 
     public void print()
     {
         // post: prints the data fields of the tree, one per line
         //
+        printInorder(myRoot);
     }
 
     private void printInorder(TreeNode node)
@@ -99,6 +105,9 @@ public class BinarySearchTree
         // post: deletes a node with data equal to target, if present,
         //       preserving binary search tree property
         //
+        TreeNode result = deleteHelper(myRoot, target);
+        if (result != null)
+            deleteTargetNode(result);
     }
 
     private TreeNode deleteHelper(TreeNode node, Comparable target)
@@ -106,9 +115,7 @@ public class BinarySearchTree
         // pre : node points to a non-empty binary search tree
         // post: deletes a node with data equal to target, if present,
         //       preserving binary search tree property
-        System.out.println("To be implemented in Lab Assignment AB30.2")
-        ;
-        return null;
+        return (TreeNode)findHelper(node, target);
     }
 
     private TreeNode deleteTargetNode(TreeNode target)
@@ -116,9 +123,14 @@ public class BinarySearchTree
         // pre : target points to TreeNode to be deleted
         // post: returns a reference to a subtree with the target
         //       TreeNode removed or null if the TreeNode is a leaf
-        System.out.println("To be implemented in Lab Assignment AB30.2")
-        ;
-        return null;
+        if (target.getLeft() != null && target.getRight() != null)
+            return deleteTwoChildren(target);
+        else if (target.getLeft() != null)
+            return deleteOneChild(target, target.getLeft());
+        else if (target.getRight() != null)
+            return deleteOneChild(target, target.getRight());
+        else
+            return deleteLeaf(target);
     }
 
 }
