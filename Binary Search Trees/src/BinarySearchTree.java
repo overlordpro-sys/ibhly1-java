@@ -1,70 +1,96 @@
-public class BinarySearchTree {
-    import java.util.*;
 
-    /**
-     *  Implements a Binary Search Tree
-     *
-     * @author     G. Peck
-     * @created    July 2, 2003
-     *
-     * Modified by Jason Quesenberry and Nancy Quesenberry
-     * February 9, 2006
-     */
+import java.util.*;
 
-    public class BinarySearchTree{
-        // create private TreeNode called myRoot
-        TreeNode myRoot;
-        public BinarySearchTree()
+/**
+ *  Implements a Binary Search Tree
+ *
+ * @author     G. Peck
+ * @created    July 2, 2003
+ *
+ * Modified by Jason Quesenberry and Nancy Quesenberry
+ * February 9, 2006
+ */
+
+public class BinarySearchTree
+{
+    // create private TreeNode called myRoot
+    TreeNode myRoot;
+    public BinarySearchTree()
+    {
+        myRoot = null;
+    }
+
+    public void insert(Comparable next)
+    {
+        // post: next added to tree so as to preserve binary search tree
+        if (myRoot == null)
+            myRoot = new TreeNode(next);
+        else
+            myRoot = insertHelper(myRoot, next);
+    }
+
+    private TreeNode insertHelper(TreeNode root, Comparable next)
+    {
+        // pre : root points to a binary search tree
+        // post: next added to tree so as to preserve binary search tree
+        //
+        if (root == null)
         {
-            myRoot = null;
-        }
-
-        public void insert(Comparable next)
-        {
-            // post: next added to tree so as to preserve binary search tree
-            //
-        }
-
-        private TreeNode insertHelper(TreeNode root, Comparable next)
-        {
-            // pre : root points to a binary search tree
-            // post: next added to tree so as to preserve binary search tree
-            //
-        }
-
-        public Object find(Comparable target)
-        {
-            //
-        }
-
-        private Object findHelper(TreeNode root, Comparable target)
-        {
-            System.out.println("To be implemented in Lab Assignment AB30.2")
-            ;
             return null;
         }
-
-        public int countNodes()
+        Comparable value = (Comparable)root.getValue();
+        if (value.compareTo(next)>=0)
         {
-            //
+            root.setRight(insertHelper(root.getRight(), next));
+            return root;
+        }
+        else if (value.compareTo(next)<0)
+        {
+            root.setLeft(insertHelper(root.getLeft(), next));
+            return root;
         }
 
-        private int countNodesHelper(TreeNode root)
-        {
-            //
-        }
 
-        public void print()
-        {
-            // post: prints the data fields of the tree, one per line
-            //
-        }
 
-        private void printInorder(TreeNode root)
-        {
-            // pre : root points to a binary search tree
-            // post: prints the data fields of the tree using an inorder traversal
-            //
+    }
+
+    public Object find(Comparable target)
+    {
+        //
+    }
+
+    private Object findHelper(TreeNode root, Comparable target)
+    {
+        System.out.println("To be implemented in Lab Assignment AB30.2")
+        ;
+        return null;
+    }
+
+    public int countNodes()
+    {
+        //
+    }
+
+    private int countNodesHelper(TreeNode root)
+    {
+        //
+    }
+
+    public void print()
+    {
+        // post: prints the data fields of the tree, one per line
+        //
+    }
+
+    private void printInorder(TreeNode node)
+    {
+        // pre : node points to a binary search tree
+        // post: prints the data fields of the tree using an inorder traversal
+        //
+        if (node != null) {
+            printInorder (node.getLeft());
+            System.out.println(node.getValue());
+            printInorder (node.getRight());
         }
     }
 
@@ -96,4 +122,4 @@ public class BinarySearchTree {
     }
 
 }
-}
+
