@@ -105,9 +105,7 @@ public class BinarySearchTree
         // post: deletes a node with data equal to target, if present,
         //       preserving binary search tree property
         //
-        TreeNode result = deleteHelper(myRoot, target);
-        if (result != null)
-            deleteTargetNode(result);
+        myRoot = deleteHelper(myRoot, target);
     }
 
     private TreeNode deleteHelper(TreeNode node, Comparable target)
@@ -115,23 +113,57 @@ public class BinarySearchTree
         // pre : node points to a non-empty binary search tree
         // post: deletes a node with data equal to target, if present,
         //       preserving binary search tree property
-        return (TreeNode)findHelper(node, target);
+        if (node == null)
+            return null;
+        Comparable value = (Comparable)node.getValue();
+        if (value.compareTo(target) == 0)
+            return deleteTargetNode(node);
+        else if (value.compareTo(target) > 0)
+        {
+            node.setRight(deleteHelper(node.getRight(), target));
+            return node;
+        }
+        else
+        {
+            node.setLeft(deleteHelper(node.getLeft(), target));
+            return node;
+        }
+    }
+//    if (root == null)
+//        return new TreeNode(next);
+//    Comparable value = (Comparable)root.getValue();
+//        if (value.compareTo(next)>=0)
+//    {
+//        root.setRight(insertHelper(root.getRight(), next));
+//        return root;
+//    }
+//        root.setLeft(insertHelper(root.getLeft(), next));
+//        return root;
+
+    private TreeNode deleteTargetNode(TreeNode target){
+        if (target.getRight() == null) {
+            return target.getLeft();
+        }
+        else if (target.getLeft() == null) {
+            return target.getRight();
+        }
+        else if (target.getLeft().getRight() == null) {
+            target.setValue(target.getLeft().getValue());
+            System.out.println("target value is now " + target.getValue());
+            target.setLeft(target.getLeft().getLeft());
+            return target;
+        }
+        else{ // left child has right child
+
+            TreeNode marker = target.getLeft();
+            while (marker.getRight().getRight() != null)
+                marker = marker.getRight();
+            target.setValue(marker.getRight().getValue());
+            marker.setRight(marker.getRight().getLeft());
+            return target;
+        }
     }
 
-    private TreeNode deleteTargetNode(TreeNode target)
-    {
-        // pre : target points to TreeNode to be deleted
-        // post: returns a reference to a subtree with the target
-        //       TreeNode removed or null if the TreeNode is a leaf
-        if (target.getLeft() != null && target.getRight() != null)
-            return deleteTwoChildren(target);
-        else if (target.getLeft() != null)
-            return deleteOneChild(target, target.getLeft());
-        else if (target.getRight() != null)
-            return deleteOneChild(target, target.getRight());
-        else
-            return deleteLeaf(target);
-    }
 
 }
 

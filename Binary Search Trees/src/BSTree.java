@@ -66,7 +66,7 @@ public class BSTree{
   public void readData (BinarySearchTree temp){
     Scanner inFile;
 
-    String fileName = "file20.txt";
+    String fileName = "file10.txt";
     int id, inv;
 	try{
     	inFile = new Scanner(new File(fileName));
@@ -102,7 +102,7 @@ public class BSTree{
           case '2' :
             System.out.println();
             System.out.println("The tree printed inorder\n");
-            System.out.printf("%10s%10s","Id","Inv");
+            System.out.printf("%6s%6s","Id","Inv");
             System.out.println();
             root.print();
             System.out.println();
