@@ -1,6 +1,3 @@
-
-import java.util.*;
-
 /**
  *  Implements a Binary Search Tree
  *
@@ -94,9 +91,9 @@ public class BinarySearchTree
         // post: prints the data fields of the tree using an inorder traversal
         //
         if (node != null) {
-            printInorder (node.getLeft());
-            System.out.println(node.getValue());
             printInorder (node.getRight());
+            System.out.println(node.getValue());
+            printInorder (node.getLeft());
         }
     }
 
@@ -129,16 +126,6 @@ public class BinarySearchTree
             return node;
         }
     }
-//    if (root == null)
-//        return new TreeNode(next);
-//    Comparable value = (Comparable)root.getValue();
-//        if (value.compareTo(next)>=0)
-//    {
-//        root.setRight(insertHelper(root.getRight(), next));
-//        return root;
-//    }
-//        root.setLeft(insertHelper(root.getLeft(), next));
-//        return root;
 
     private TreeNode deleteTargetNode(TreeNode target){
         if (target.getRight() == null) {
@@ -164,6 +151,77 @@ public class BinarySearchTree
         }
     }
 
+    public int countLeaves(){
+        return 0;
+    }
+
+    private int countLeaves (TreeNode root){
+        return 0;
+    }
+
+    public void clearTree()
+    {
+        myRoot = null;
+    }
+
+    public int height()
+    {
+        return height(myRoot);
+    }
+
+    private int height(TreeNode node)
+    {
+        if (node == null)
+            return 0;
+
+        return 1 + Math.max(height(node.getLeft()), height(node.getRight()));
+    }
+
+    public int width(){
+        return 0;
+    }
+
+    private int width (TreeNode root){
+        return 0;
+    }
+    public void interchange()
+    // post: tree becomes a mirror image of itself
+    {
+
+    }
+
+    private void interchange(TreeNode root)
+    {
+
+    }
+
+    public boolean isAncestor(Comparable ancestor, Comparable descendant){
+        // post: returns true if descendant is a "child" of ancestor; false otherwise
+        //       i.e., true if descendant belongs to ancestor's subtree
+        return false;
+    }
+
+    public boolean isAncestor(TreeNode root, Comparable a, Comparable d){
+        if (findPtr(findPtr(root, a), d) != null)
+            return true;
+        else
+            return false;
+    }
+
+    private TreeNode findPtr(TreeNode root, Comparable target){
+        return null;
+    }
+
+    public void printLevel(int level)
+    // post: prints the data fields of the tree, one per line
+    {
+
+    }
+
+    private void printLevel(TreeNode root, int level)
+    {
+
+    }
 
 }
 
