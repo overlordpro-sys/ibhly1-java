@@ -68,12 +68,12 @@ public class TreeStats {
   public void readData (BinarySearchTree temp){
     Scanner inFile;
 
-    String fileName = "fileA.txt";
+    String fileName = "test.txt";
 	try{
     	inFile = new Scanner(new File(fileName));
 		while(inFile.hasNext()){
 
-      		temp.insert(inFile.nextLine());
+      		temp.insert(inFile.nextInt());
     	}
     }catch(IOException i){
     	System.out.println("Error: "+ i.getMessage());
@@ -112,24 +112,36 @@ public class TreeStats {
             readData(root);
             break;
           case 2 :
-            System.out.println("Tree in preorder");
+            System.out.println();
+            System.out.println("Tree in preorder\n");
+            System.out.printf("%6s%6s","Id","Inv");
+            System.out.println();
+            root.printPreorder();
+            System.out.println();
+            break;
           case 3 :
             System.out.println();
             System.out.println("Tree in order\n");
             System.out.printf("%6s%6s","Id","Inv");
             System.out.println();
-            root.print();
+            root.printInorderHelper();
             System.out.println();
             break;
           case 4 :
-            System.out.println("Tree in postorder");
+            System.out.println();
+            System.out.println("Tree in postorder\n");
+            System.out.printf("%6s%6s","Id","Inv");
+            System.out.println();
+            root.printPostorder();
+            System.out.println();
             break;
           case 5 :
-            System.out.println("Number of nodes = " + root.countNodes ());
+            System.out.println("Number of nodes = " + root.countNodes());
             System.out.println();
             break;
           case 6 :
-            System.out.println("countLeaves");
+            System.out.println("Number of leaves = " + root.countLeaves ());
+            System.out.println();
             break;
           case 7 :
             System.out.println("Tree Height: " + root.height());
@@ -139,10 +151,10 @@ public class TreeStats {
             break;
           case 9 :
             System.out.println("Tree cleared");
-            root.clearTree();
             break;
           case 10 :
-            System.out.println("interchange");
+            System.out.println("Tree interchanged");
+            root.interchange();
             break;
           case 11 :
             System.out.println("printLevel");
@@ -173,7 +185,6 @@ public class TreeStats {
     }
     catch(Exception e)
     {
-      System.out.println("Invalid input");
     }
     return -1;
   }

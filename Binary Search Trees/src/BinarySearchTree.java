@@ -34,7 +34,7 @@ public class BinarySearchTree
         if (root == null)
             return new TreeNode(next);
         Comparable value = (Comparable)root.getValue();
-        if (value.compareTo(next)>=0)
+        if (next.compareTo(value)>=0)
         {
             root.setRight(insertHelper(root.getRight(), next));
             return root;
@@ -78,26 +78,57 @@ public class BinarySearchTree
                 countNodesHelper(root.getRight());
     }
 
-    public void print()
+    public void printInorderHelper()
     {
         // post: prints the data fields of the tree, one per line
         //
-        printInorder(myRoot);
+        printInorderHelper(myRoot);
     }
 
-    private void printInorder(TreeNode node)
+    private void printInorderHelper(TreeNode root)
     {
         // pre : node points to a binary search tree
         // post: prints the data fields of the tree using an inorder traversal
         //
-        if (node != null) {
-            printInorder (node.getRight());
-            System.out.println(node.getValue());
-            printInorder (node.getLeft());
+        if (root != null) {
+            printInorderHelper(root.getLeft());
+            System.out.println(root.getValue());
+            printInorderHelper(root.getRight());
         }
     }
 
-    public void delete(Comparable target)
+    public void printPreorder(){
+        // post: prints the data fields of the tree, one per line
+        printPreorderHelper(myRoot);
+    }
+
+    private void printPreorderHelper(TreeNode root){
+        // pre : root points to a binary search tree
+        // post: prints the data fields of the tree using an inorder traversal
+        if (root != null) {
+            System.out.println(root.getValue());
+            printInorderHelper(root.getLeft());
+            printInorderHelper(root.getRight());
+        }
+    }
+
+
+    public void printPostorder(){
+        // post: prints the data fields of the tree, one per line
+        printPostorderHelper(myRoot);
+    }
+
+    private void printPostorderHelper(TreeNode root){
+        // pre : root points to a binary search tree
+        // post: prints the data fields of the tree using an inorder traversal
+        if (root != null) {
+            printInorderHelper(root.getLeft());
+            printInorderHelper(root.getRight());
+            System.out.println(root.getValue());
+        }
+    }
+
+public void delete(Comparable target)
     {
         // post: deletes a node with data equal to target, if present,
         //       preserving binary search tree property
@@ -152,11 +183,17 @@ public class BinarySearchTree
     }
 
     public int countLeaves(){
-        return 0;
+        return countLeaves(myRoot);
     }
 
     private int countLeaves (TreeNode root){
-        return 0;
+        if (root == null)
+            return 0;
+
+        if (countLeaves(root.getLeft()) == 0 && countLeaves(root.getRight()) == 0)
+            return 1;
+        else
+            return countLeaves(root.getLeft()) + countLeaves(root.getRight());
     }
 
     public void clearTree()
@@ -187,12 +224,19 @@ public class BinarySearchTree
     public void interchange()
     // post: tree becomes a mirror image of itself
     {
-
+        interchange(myRoot);
     }
 
     private void interchange(TreeNode root)
     {
-
+        if (root != null)
+        {
+            interchange(root.getLeft());
+            interchange(root.getRight());
+            TreeNode temp = root.getLeft();
+            root.setLeft(root.getRight());
+            root.setRight(temp);
+        }
     }
 
     public boolean isAncestor(Comparable ancestor, Comparable descendant){
@@ -215,11 +259,28 @@ public class BinarySearchTree
     public void printLevel(int level)
     // post: prints the data fields of the tree, one per line
     {
-
+        printLevel(myRoot, level);
     }
 
     private void printLevel(TreeNode root, int level)
     {
+           // pre : node points to a binary search tree
+            // post: prints the data fields of the tree using an inorder traversal
+            //
+            if (root != null) {
+                if (level == 0)
+                    System.out.println(root.getValue());
+                printLevel (root.getLeft(), level);
+                printLevel (root.getRight(), level);
+
+
+            }
+    }
+
+    public void debug()
+    {
+        System.out.println(myRoot.getValue());
+        System.out.println(myRoot.getLeft().getValue());
 
     }
 
