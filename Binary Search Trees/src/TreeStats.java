@@ -21,23 +21,22 @@ public class TreeStats {
   }
 
   void testFind(BinarySearchTree temp){
-    int idToFind;
-    Item location;
+    String toFind;
 
     System.out.println("Testing search algorithm\n");
     System.out.print("Enter Id value to search for (-1 to quit) --> ");
-    idToFind = console.nextInt();
+    toFind = console.nextLine();
 
-    while (idToFind >= 0){
-      location = (Item)temp.find(new Item(idToFind, 0));
+    while (!toFind.equals("Q"))
+    {
+      Object location = temp.find(toFind);
       if (location == null)
-        System.out.println("Id = " + idToFind + "  No such part in stock");
+        System.out.println(location + " found");
       else
-        System.out.println("Id = " + location.getId() +
-                           "  Inv = " + location.getInv());
+        System.out.println(location + "not found");
       System.out.println();
-      System.out.print("Enter Id value to search for (-1 to quit) --> ");
-      idToFind = console.nextInt();
+      System.out.print("Enter Id value to search for (Q to quit) --> ");
+      toFind = console.nextLine();
     }
   }
 
@@ -68,15 +67,60 @@ public class TreeStats {
   public void readData (BinarySearchTree temp){
     Scanner inFile;
 
-    String fileName = "test.txt";
-	try{
-    	inFile = new Scanner(new File(fileName));
-		while(inFile.hasNext()){
+    String fileName = "fileB.txt";
+    try{
+      inFile = new Scanner(new File(fileName));
+      while(inFile.hasNext()){
 
-      		temp.insert(inFile.nextInt());
-    	}
+        temp.insert(inFile.nextLine());
+      }
     }catch(IOException i){
-    	System.out.println("Error: "+ i.getMessage());
+      System.out.println("Error: "+ i.getMessage());
+    }
+  }
+
+  public void testLevel (BinarySearchTree temp)
+  {
+    System.out.println("Testing level algorithm\n");
+    System.out.print("Enter level to search for (-1 to quit) --> ");
+    int level = console.nextInt();
+    while (level >= 0)
+    {
+      System.out.println("Level " + level + " has: ");
+      temp.printLevel(level);
+      System.out.println();
+      System.out.print("Enter level to search for (-1 to quit) --> ");
+      level = console.nextInt();
+    }
+  }
+
+  public void testAncestor (BinarySearchTree temp)
+  {
+    boolean run = true;
+
+    Scanner keyboard = new Scanner(System.in);
+
+    while (run)
+    {
+      System.out.print("\nAncestor: ");
+      String ancestor = keyboard.nextLine();
+
+      System.out.print("\nDescendant to look for: ");
+      String descendant = keyboard.nextLine();
+      keyboard.nextLine(); //flush newline
+
+      if (temp.isAncestor(ancestor, descendant))
+      {
+        System.out.println(descendant + " is a descendant of " + ancestor);
+      }
+      else
+      {
+        System.out.println(descendant + " is NOT a descendant of " + ancestor);
+      }
+
+      System.out.print("Continue (Y/N): ");
+      String answer = keyboard.nextLine();
+      run = answer.equalsIgnoreCase("Y");
     }
   }
 
@@ -151,16 +195,17 @@ public class TreeStats {
             break;
           case 9 :
             System.out.println("Tree cleared");
+            root.clearTree();
             break;
           case 10 :
             System.out.println("Tree interchanged");
             root.interchange();
             break;
           case 11 :
-            System.out.println("printLevel");
+            testLevel(root);
             break;
           case 12 :
-            System.out.println("isAncestor");
+            testAncestor(root);
             break;
           case 13 :
             testFind(root);

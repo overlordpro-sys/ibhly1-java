@@ -1,3 +1,7 @@
+import com.sun.source.tree.Tree;
+
+import java.util.ArrayList;
+
 /**
  *  Implements a Binary Search Tree
  *
@@ -242,7 +246,7 @@ public void delete(Comparable target)
     public boolean isAncestor(Comparable ancestor, Comparable descendant){
         // post: returns true if descendant is a "child" of ancestor; false otherwise
         //       i.e., true if descendant belongs to ancestor's subtree
-        return false;
+        return isAncestor(myRoot, ancestor, descendant);
     }
 
     public boolean isAncestor(TreeNode root, Comparable a, Comparable d){
@@ -253,7 +257,15 @@ public void delete(Comparable target)
     }
 
     private TreeNode findPtr(TreeNode root, Comparable target){
-        return null;
+        if (root == null)
+            return null;
+        Comparable value = (Comparable)root.getValue();
+        if (value.compareTo(target) == 0)
+            return root;
+        else if (value.compareTo(target) > 0)
+            return findPtr(root.getRight(), target);
+        else
+            return findPtr(root.getLeft(), target);
     }
 
     public void printLevel(int level)
@@ -264,17 +276,17 @@ public void delete(Comparable target)
 
     private void printLevel(TreeNode root, int level)
     {
-           // pre : node points to a binary search tree
-            // post: prints the data fields of the tree using an inorder traversal
-            //
-            if (root != null) {
-                if (level == 0)
-                    System.out.println(root.getValue());
-                printLevel (root.getLeft(), level);
-                printLevel (root.getRight(), level);
-
-
+        // pre : node points to a binary search tree
+        // post: prints the data fields of the tree using an inorder traversal
+        //
+        if (root != null) {
+            if (level == 0)
+                System.out.println(root.getValue());
+            else{
+                printLevel(root.getLeft(), level - 1);
+                printLevel(root.getRight(), level - 1);
             }
+        }
     }
 
     public void debug()
