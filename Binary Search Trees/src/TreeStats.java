@@ -24,43 +24,43 @@ public class TreeStats {
     String toFind;
 
     System.out.println("Testing search algorithm\n");
-    System.out.print("Enter Id value to search for (-1 to quit) --> ");
+    System.out.print("Enter value to search for (-1 to quit) --> ");
     toFind = console.nextLine();
 
-    while (!toFind.equals("Q"))
+    while (!toFind.equals("-1"))
     {
       Object location = temp.find(toFind);
-      if (location == null)
-        System.out.println(location + " found");
+      if (location != null)
+        System.out.println(toFind + " found");
       else
-        System.out.println(location + "not found");
+        System.out.println(toFind + " not found");
       System.out.println();
-      System.out.print("Enter Id value to search for (Q to quit) --> ");
+      System.out.print("Enter Id value to search for (-1 to quit) --> ");
       toFind = console.nextLine();
     }
   }
 
+
   public void testDelete(BinarySearchTree temp){
-    int idToDelete;
+    String toDelete;
     boolean success;
 
     System.out.println("Testing delete algorithm\n");
-    System.out.print("Enter Id value to delete (-1 to quit) --> ");
-    idToDelete = console.nextInt();
+    System.out.print("Enter value to delete (-1 to quit) --> ");
+    toDelete = console.nextLine();
 
-    while (idToDelete >= 0){
-      Item dNode = new Item(idToDelete, 0);
-
-      if (temp.find(dNode) == null)
-        System.out.println("Id# " + idToDelete + "  No such part in stock");
+    while (!toDelete.equals("-1"))
+    {
+      if (temp.find(toDelete) == null)
+        System.out.println(toDelete + " not in tree");
       else{
-        temp.delete(dNode);
-        System.out.println("     Id #" + idToDelete + " was deleted");
+        temp.delete(toDelete);
+        System.out.println(toDelete + " was deleted");
       }
       System.out.println();
       System.out.print("Enter Id value to delete (-1 to quit) --> ");
 
-      idToDelete = console.nextInt();
+      toDelete = console.nextLine();
     }
   }
 
@@ -191,7 +191,7 @@ public class TreeStats {
             System.out.println("Tree Height: " + root.height());
             break;
           case 8 :
-            System.out.println("width");
+            System.out.println("width: " + root.width());
             break;
           case 9 :
             System.out.println("Tree cleared");

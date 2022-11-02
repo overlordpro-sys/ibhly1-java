@@ -62,7 +62,7 @@ public class BinarySearchTree
         Comparable value = (Comparable)root.getValue();
         if (value.compareTo(target) == 0)
             return root.getValue();
-        else if (value.compareTo(target) > 0)
+        else if (target.compareTo(value) > 0)
             return findHelper(root.getRight(), target);
         else
             return findHelper(root.getLeft(), target);
@@ -149,8 +149,10 @@ public void delete(Comparable target)
             return null;
         Comparable value = (Comparable)node.getValue();
         if (value.compareTo(target) == 0)
+        {
             return deleteTargetNode(node);
-        else if (value.compareTo(target) > 0)
+        }
+        else if (target.compareTo(value) > 0)
         {
             node.setRight(deleteHelper(node.getRight(), target));
             return node;
@@ -219,11 +221,20 @@ public void delete(Comparable target)
     }
 
     public int width(){
-        return 0;
+        return width(myRoot);
     }
 
     private int width (TreeNode root){
-        return 0;
+        if (root == null)
+            return 0;
+        int width = 1;
+        if (myRoot.getLeft()!=null)
+            width += height(myRoot.getLeft());
+        if (myRoot.getRight()!=null)
+            width += height(myRoot.getRight());
+        return Math.max(width, Math.max(width(root.getLeft()), width(root.getRight())));
+
+
     }
     public void interchange()
     // post: tree becomes a mirror image of itself
@@ -291,8 +302,12 @@ public void delete(Comparable target)
 
     public void debug()
     {
-        System.out.println(myRoot.getValue());
-        System.out.println(myRoot.getLeft().getValue());
+        int width = 1;
+        if (myRoot.getLeft().getLeft()!=null)
+            width += height(myRoot.getLeft());
+        if (myRoot.getLeft().getRight()!=null)
+            width += height(myRoot.getRight());
+        System.out.print(width);
 
     }
 

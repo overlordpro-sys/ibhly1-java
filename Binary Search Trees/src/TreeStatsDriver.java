@@ -14,5 +14,6 @@ public class TreeStatsDriver {
 
         TreeStats menu = new TreeStats();
         menu.mainMenu(tree);
+        tree.debug();
     }
 }
