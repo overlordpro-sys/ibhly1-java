@@ -1,6 +1,4 @@
-import com.sun.source.tree.Tree;
-
-import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  *  Implements a Binary Search Tree
@@ -99,6 +97,27 @@ public class BinarySearchTree
             System.out.println(root.getValue());
             printInorderHelper(root.getRight());
         }
+    }
+
+    public void stackInorder()
+    {
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode temp = myRoot;
+
+        do {
+            while (temp != null)
+            {
+                stack.push(temp);
+                temp = temp.getLeft();
+            }
+            if (!stack.isEmpty())
+            {
+                temp = stack.pop();
+                System.out.println(temp.getValue());
+                temp = temp.getRight();
+            }
+        }
+        while (temp != null && !stack.isEmpty());
     }
 
     public void printPreorder(){

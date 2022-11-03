@@ -67,7 +67,7 @@ public class TreeStats {
   public void readData (BinarySearchTree temp){
     Scanner inFile;
 
-    String fileName = "fileB.txt";
+    String fileName = "file20.txt";
     try{
       inFile = new Scanner(new File(fileName));
       while(inFile.hasNext()){
