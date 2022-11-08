@@ -81,18 +81,28 @@ public class TreeStats {
 
   public void testLevel (BinarySearchTree temp)
   {
+    String level;
     System.out.println("Testing level algorithm\n");
     System.out.print("Enter level to search for (-1 to quit) --> ");
-    int level = console.nextInt();
-    while (level >= 0)
+    level = console.nextLine();
+    while (!level.equals("-1"))
     {
-      System.out.println("Level " + level + " has: ");
-      temp.printLevel(level);
-      System.out.println();
-      System.out.print("Enter level to search for (-1 to quit) --> ");
-      level = console.nextInt();
+      try {
+        int tempInt = Integer.parseInt(level);
+        System.out.println("Level " + level + " has: ");
+        temp.printLevel(tempInt);
+        System.out.println();
+        System.out.print("Enter level to search for (-1 to quit) --> ");
+        level = console.nextLine();
+      }
+      catch (Exception e) {
+        System.out.println("Invalid level");
+        System.out.print("Enter level to search for (-1 to quit) --> ");
+        level = console.nextLine();
+      }
     }
   }
+
 
   public void testAncestor (BinarySearchTree temp)
   {
@@ -142,13 +152,13 @@ public class TreeStats {
       System.out.println("(12) isAncestor");
       System.out.println("(13) Find");
       System.out.println("(14) Delete");
-      System.out.println("(Q) Quit\n");
+      System.out.println("(-1) Quit\n");
       System.out.print("Choice ---> ");
       choice = console.nextLine();
       choiceNum = validMenuInput(choice);
       System.out.println();
 
-      if (choiceNum != -1)
+      if (choiceNum >= 0)
       {
         switch (choiceNum){
           case 1 :
@@ -165,7 +175,7 @@ public class TreeStats {
             System.out.println();
             System.out.println("Tree in order\n");
             System.out.println();
-            root.printInorderHelper();
+            root.printInorder();
             System.out.println();
             break;
           case 4 :
@@ -212,7 +222,7 @@ public class TreeStats {
         }
       }
     }
-    while (choice.charAt(0) != 'Q' && choice.charAt(0) != 'q');
+    while (choiceNum != -1);
   }
 
   public int validMenuInput(String input)
@@ -221,12 +231,16 @@ public class TreeStats {
     try
     {
       int choice = Integer.parseInt(input);
+      if (choice == -1)
+      {
+        return -1;
+      }
       if (choice >= 1 && choice <= 14)
         return choice;
     }
     catch(Exception e)
     {
     }
-    return -1;
+    return -999;
   }
 }

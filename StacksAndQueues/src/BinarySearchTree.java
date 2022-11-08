@@ -80,7 +80,7 @@ public class BinarySearchTree
                 countNodesHelper(root.getRight());
     }
 
-    public void printInorderHelper()
+    public void printInorder()
     {
         // post: prints the data fields of the tree, one per line
         //
@@ -99,23 +99,24 @@ public class BinarySearchTree
         }
     }
 
-    public void stackInorder()
+    public void printInOrder()
     {
-        Stack<TreeNode> stack = new Stack<>();
+        Stack<TreeNode> stack = new Stack<TreeNode>();
         TreeNode temp = myRoot;
-
-        do {
+        do{
             while (temp != null)
             {
                 stack.push(temp);
                 temp = temp.getLeft();
             }
+
             if (!stack.isEmpty())
             {
                 temp = stack.pop();
                 System.out.println(temp.getValue());
                 temp = temp.getRight();
             }
+
         }
         while (temp != null && !stack.isEmpty());
     }

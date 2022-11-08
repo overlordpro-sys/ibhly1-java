@@ -1,7 +1,3 @@
-import com.sun.source.tree.Tree;
-
-import java.util.ArrayList;
-
 /**
  *  Implements a Binary Search Tree
  *
@@ -82,7 +78,7 @@ public class BinarySearchTree
                 countNodesHelper(root.getRight());
     }
 
-    public void printInorderHelper()
+    public void printInorder()
     {
         // post: prints the data fields of the tree, one per line
         //
@@ -111,8 +107,8 @@ public class BinarySearchTree
         // post: prints the data fields of the tree using an inorder traversal
         if (root != null) {
             System.out.println(root.getValue());
-            printInorderHelper(root.getLeft());
-            printInorderHelper(root.getRight());
+            printPreorderHelper(root.getLeft());
+            printPreorderHelper(root.getRight());
         }
     }
 
@@ -126,8 +122,8 @@ public class BinarySearchTree
         // pre : root points to a binary search tree
         // post: prints the data fields of the tree using an inorder traversal
         if (root != null) {
-            printInorderHelper(root.getLeft());
-            printInorderHelper(root.getRight());
+            printPostorderHelper(root.getLeft());
+            printPostorderHelper(root.getRight());
             System.out.println(root.getValue());
         }
     }

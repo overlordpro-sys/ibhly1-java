@@ -165,7 +165,7 @@ public class TreeStats {
             System.out.println();
             System.out.println("Tree in order\n");
             System.out.println();
-            root.printInorderHelper();
+            root.printInOrder();
             System.out.println();
             break;
           case 4 :

@@ -104,7 +104,7 @@ public class BSTree{
             System.out.println("The tree printed inorder\n");
             System.out.printf("%6s%6s","Id","Inv");
             System.out.println();
-            root.printInorderHelper();
+            root.printInorder();
             System.out.println();
             break;
           case '3' :
