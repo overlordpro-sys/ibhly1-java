@@ -67,7 +67,7 @@ public class TreeStats {
   public void readData (BinarySearchTree temp){
     Scanner inFile;
 
-    String fileName = "file20.txt";
+    String fileName = "fileC.txt";
     try{
       inFile = new Scanner(new File(fileName));
       while(inFile.hasNext()){
@@ -142,6 +142,7 @@ public class TreeStats {
       System.out.println("(12) isAncestor");
       System.out.println("(13) Find");
       System.out.println("(14) Delete");
+      System.out.println("(15) print levels");
       System.out.println("(Q) Quit\n");
       System.out.print("Choice ---> ");
       choice = console.nextLine();
@@ -209,6 +210,9 @@ public class TreeStats {
           case 14 :
             testDelete(root);
             break;
+          case 15 :
+            root.printLevel();
+            break;
         }
       }
     }
@@ -221,7 +225,7 @@ public class TreeStats {
     try
     {
       int choice = Integer.parseInt(input);
-      if (choice >= 1 && choice <= 14)
+      if (choice >= 1 && choice <= 15)
         return choice;
     }
     catch(Exception e)
