@@ -9,36 +9,37 @@ public class RPNCalcMenu
     public RPNCalcMenu()
     {
         console = new Scanner(System.in);
-        RPNCalc calc = new RPNCalc();
+        calc = new RPNCalc();
     }
     public void mainMenu()
     {
         String equation = "";
-        char input;
+        String input;
         do
         {
-            System.out.println("Input your number / operation");
-            input = console.nextLine().charAt(0);
+            System.out.print("\n Press enter to get the solution or input your number / operation: ");
+            input = console.nextLine();
+            if (input.equals(""))
+            {
+                System.out.print(equation + "= ");
+                calc.printResult();
+                continue;
+            }
+            char character = input.charAt(0);
             try {
-                int num = Integer.parseInt(String.valueOf(input));
+                int num = Integer.parseInt(String.valueOf(character));
                 equation += num + "  ";
                 calc.push(num);
             }
             catch (Exception e)
             {
-                if (Arrays.asList('+', '-', '*', '/').contains(input))
-                {
-                    equation += input + "  ";
-                    calc.operation(input);
-                }
-                else
-                {
-                    System.out.println("Invalid input");
-                    continue;
+                if (Arrays.asList('+', '-', '*', '/').contains(character)) {
+                    equation += character + "  ";
+                    calc.operation(character);
                 }
             }
             System.out.print(equation);
         }
-        while(input!='Q');
+        while(!input.equals("Q"));
     }
 }
