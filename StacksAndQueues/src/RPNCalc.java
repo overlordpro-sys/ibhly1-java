@@ -14,12 +14,12 @@ public class RPNCalc
         stack.push(val);
     }
 
-    public void operation(char op)
+    public boolean operation(char op)
     {
         if (stack.size() <=1)
         {
             System.out.println("Not enough numbers in the stack");
-            return;
+            return false;
         }
         int num2 = stack.pop();
         int num1 = stack.pop();
@@ -27,25 +27,26 @@ public class RPNCalc
         {
             case '+':
                 stack.push(num1+num2);
-                break;
+                return true;
             case '-':
                 stack.push(num1-num2);
-                break;
+                return true;
             case '*':
                 stack.push(num1*num2);
-                break;
+                return true;
             case '/':
                 stack.push(num1/num2);
-                break;
+                return true;
         }
+        return false;
     }
 
-    public void printResult()
+    public String getResult()
     {
         if (stack.isEmpty())
-            System.out.println("Stack is empty");
+            return "\nStack is empty";
         if (stack.size() != 1)
-            System.out.println("Stack has more than one item");
-        System.out.print(stack.peek());
+            return "\nStack has more than one item (not enough operations)";
+        return "= " + stack.peek();
     }
 }

@@ -21,8 +21,8 @@ public class RPNCalcMenu
             input = console.nextLine();
             if (input.equals(""))
             {
-                System.out.print(equation + "= ");
-                calc.printResult();
+                System.out.print(equation + calc.getResult());
+                System.out.println();
                 continue;
             }
             char character = input.charAt(0);
@@ -34,11 +34,14 @@ public class RPNCalcMenu
             catch (Exception e)
             {
                 if (Arrays.asList('+', '-', '*', '/').contains(character)) {
-                    equation += character + "  ";
-                    calc.operation(character);
+                    if (calc.operation(character))
+                    {
+                        equation += character + "  ";
+                    }
                 }
             }
             System.out.print(equation);
+            System.out.println();
         }
         while(!input.equals("Q"));
     }
