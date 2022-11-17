@@ -11,7 +11,7 @@
 public class BinarySearchTree
 {
     // create private TreeNode called myRoot
-    TreeNode myRoot;
+    private TreeNode myRoot;
     public BinarySearchTree()
     {
         myRoot = null;
@@ -167,19 +167,18 @@ public void delete(Comparable target)
         else if (target.getLeft() == null) {
             return target.getRight();
         }
-        else if (target.getLeft().getRight() == null) {
-            target.setValue(target.getLeft().getValue());
-            System.out.println("target value is now " + target.getValue());
-            target.setLeft(target.getLeft().getLeft());
+        else if (target.getRight().getLeft() == null) {
+            target.setValue(target.getRight().getValue());
+            target.setRight(target.getRight().getRight());
             return target;
         }
         else{ // left child has right child
 
-            TreeNode marker = target.getLeft();
-            while (marker.getRight().getRight() != null)
-                marker = marker.getRight();
-            target.setValue(marker.getRight().getValue());
-            marker.setRight(marker.getRight().getLeft());
+            TreeNode marker = target.getRight();
+            while (marker.getLeft().getLeft() != null)
+                marker = marker.getLeft();
+            target.setValue(marker.getLeft().getValue());
+            marker.setLeft(marker.getLeft().getRight());
             return target;
         }
     }
