@@ -38,6 +38,7 @@ public class TreeStats {
       System.out.print("Enter value to search for (-1 to quit) --> ");
       toFind = console.nextLine();
     }
+    System.out.println();
   }
 
 
@@ -62,6 +63,7 @@ public class TreeStats {
 
       toDelete = console.nextLine();
     }
+    System.out.println();
   }
 
   public void readData (BinarySearchTree temp){
@@ -101,6 +103,7 @@ public class TreeStats {
         level = console.nextLine();
       }
     }
+    System.out.println();
   }
 
 
@@ -124,7 +127,7 @@ public class TreeStats {
       }
       else
       {
-        System.out.println(descendant + " is NOT a descendant of " + ancestor);
+        System.out.println(descendant + " is NOT a descendant of " + ancestor + " or one of the objects does not exist in the tree");
       }
 
       System.out.print("Continue (Y/N): ");
@@ -137,7 +140,7 @@ public class TreeStats {
     String choice;
     boolean run = true;
     do{
-      System.out.println("Binary tree menu\n");
+      System.out.println("Binary tree menu");
       System.out.println("(1)  Fill the tree from a file");
       System.out.println("(2)  Preorder output");
       System.out.println("(3)  Inorder output");
@@ -225,22 +228,4 @@ public class TreeStats {
     while (run);
   }
 
-  public int validMenuInput(String input)
-  {
-
-    try
-    {
-      int choice = Integer.parseInt(input);
-      if (choice == -1)
-      {
-        return -1;
-      }
-      if (choice >= 1 && choice <= 14)
-        return choice;
-    }
-    catch(Exception e)
-    {
-    }
-    return -999;
-  }
 }
