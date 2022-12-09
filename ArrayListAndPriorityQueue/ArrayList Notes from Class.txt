@@ -1,0 +1,22 @@
+       
+ArrayList<???> list = new ArrayList<???>();
+    private Object[] length 10, 
+                     size --> # of objects currently in list (zero)
+
+ArrayList<???> list = new ArrayList<???>(5); 
+          private Object[] length 5, 
+                     size --> # of objects currently in list (zero)
+
+                     
+     
+when adding to an ArrayList, size increases, possibly shifting values
+to the right (depending on where you add the obj)
+
+once you reach capacity: the next time add is called, a new array is 
+created with DOUBLE the capacity, the old values are copied over, and the 
+private is now pointing to the new array
+
+when removing, size decreases, don't mess w/ capacity, shifting is 
+done, depending on which index is used in the removed
+
+

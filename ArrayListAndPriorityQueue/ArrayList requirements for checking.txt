@@ -1,0 +1,24 @@
+What needs to be done for ArrayList to be checked off
+(some mods of the starting code will be necessary):
+
+* add(int, obj) and set(int, obj) should prompt 
+	for index first
+
+* all applicable methods should THROW an
+	IndexOutOfBoundsException, where the parameter
+	is exactly what java.util.ArrayList's error
+	message should be (If you're unsure what 
+	those messages are, create a java.util ArrayList
+ 	in a different project, write code that would
+	cause the list to throw an exception, and there
+	ya go.
+
+* the testers for the methods that throw exceptions
+	should each have a try/catch block, where
+	you are printing the exception's message
+	(no String literals!)
+
+* have your add and remove methods in the class with
+	the testers repeatedly prompt until user
+	chooses to stop (like all of the other labs)
+

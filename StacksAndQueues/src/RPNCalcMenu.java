@@ -17,7 +17,7 @@ public class RPNCalcMenu
         String input;
         do
         {
-            System.out.print("\n Press enter to get the solution or input your number / operation: ");
+            System.out.print("\n Press enter to get the solution or input your number / operation (Enter 'Q' to exit): ");
             input = console.nextLine();
             if (input.equals(""))
             {
@@ -39,6 +39,8 @@ public class RPNCalcMenu
                         equation += character + "  ";
                     }
                 }
+                else
+                    System.out.println("Invalid input");
             }
             System.out.print(equation);
             System.out.println();

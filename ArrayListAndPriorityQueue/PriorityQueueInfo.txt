@@ -1,0 +1,22 @@
+PriorityQueue<E> class will have:
+
+private ArrayList<E> (yours from scratch)
+
+Methods 
+  void add(E item)
+  boolean isEmpty()
+  E peek()
+  E remove()
+
+  add will have a heapUp helper method
+  remove will have a heapDown helper method
+
+
+Remember that index 0 is null, so 
+isEmpty and peek will be looking at/for
+index 1
+
+You'll have a menu that allows the user
+to call add, isEmpty, peek, and remove. It 
+will also have a loadFile method, which will
+load file20.

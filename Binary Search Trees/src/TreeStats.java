@@ -109,30 +109,27 @@ public class TreeStats {
 
   public void testAncestor (BinarySearchTree temp)
   {
-    boolean run = true;
-
     Scanner keyboard = new Scanner(System.in);
-
-    while (run)
+    while (true)
     {
-      System.out.print("\nAncestor: ");
+      System.out.print("\nEnter ancestor (-1 to exit): ");
       String ancestor = keyboard.nextLine();
+      if (ancestor.equals("-1"))
+        return;
 
-      System.out.print("\nDescendant to look for: ");
+      System.out.print("Enter descendant to look for (-1 to exit): ");
       String descendant = keyboard.nextLine();
+      if (descendant.equals("-1"))
+        return;
 
       if (temp.isAncestor(ancestor, descendant))
       {
-        System.out.println(descendant + " is a descendant of " + ancestor);
+        System.out.println(ancestor + " is an ancestor of " + descendant);
       }
       else
       {
-        System.out.println(descendant + " is NOT a descendant of " + ancestor + " or one of the objects does not exist in the tree");
+        System.out.println(ancestor + " is NOT a ancestor of " + descendant);
       }
-
-      System.out.print("Continue (Y/N): ");
-      String answer = keyboard.nextLine();
-      run = answer.equalsIgnoreCase("Y");
     }
   }
 
@@ -195,16 +192,20 @@ public class TreeStats {
           break;
         case "7" :
           System.out.println("Tree Height: " + root.height());
+          System.out.println();
           break;
         case "8" :
           System.out.println("Width: " + root.width());
+          System.out.println();
           break;
         case "9" :
           System.out.println("Tree cleared");
+          System.out.println();
           root.clearTree();
           break;
         case "10" :
           System.out.println("Tree interchanged");
+          System.out.println();
           root.interchange();
           break;
         case "11" :

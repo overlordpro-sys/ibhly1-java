@@ -252,14 +252,17 @@ public void delete(Comparable target)
     public boolean isAncestor(Comparable ancestor, Comparable descendant){
         // post: returns true if descendant is a "child" of ancestor; false otherwise
         //       i.e., true if descendant belongs to ancestor's subtree
+        if (ancestor.equals(descendant))
+        {
+            return false;
+        }
         return isAncestor(myRoot, ancestor, descendant);
     }
 
     public boolean isAncestor(TreeNode root, Comparable a, Comparable d){
         if (findPtr(findPtr(root, a), d) != null)
             return true;
-        else
-            return false;
+        return false;
     }
 
     private TreeNode findPtr(TreeNode root, Comparable target){
