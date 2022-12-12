@@ -84,5 +84,9 @@ public class HashTable
             int length = 0;
             // left off here
         }
+
+
+
+        return 0;
     }
 }

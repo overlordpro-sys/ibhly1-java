@@ -1,6 +1,6 @@
 PriorityQueue<E> class will have:
 
-private ArrayList<E> (yours from scratch)
+private Arraylist<E> (yours from scratch)
 
 Methods 
   void add(E item)

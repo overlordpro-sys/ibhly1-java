@@ -1,4 +1,4 @@
-What needs to be done for ArrayList to be checked off
+What needs to be done for Arraylist to be checked off
 (some mods of the starting code will be necessary):
 
 * add(int, obj) and set(int, obj) should prompt 
@@ -6,9 +6,9 @@ What needs to be done for ArrayList to be checked off
 
 * all applicable methods should THROW an
 	IndexOutOfBoundsException, where the parameter
-	is exactly what java.util.ArrayList's error
+	is exactly what java.util.Arraylist's error
 	message should be (If you're unsure what 
-	those messages are, create a java.util ArrayList
+	those messages are, create a java.util Arraylist
  	in a different project, write code that would
 	cause the list to throw an exception, and there
 	ya go.
