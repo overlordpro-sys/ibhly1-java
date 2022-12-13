@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ArrayListAndPriorityQueue/ArrayListAndPriorityQueue.iml" filepath="$PROJECT_DIR$/ArrayListAndPriorityQueue/ArrayListAndPriorityQueue.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ArrayListPriorityQueue/ArrayListPriorityQueue.iml" filepath="$PROJECT_DIR$/ArrayListPriorityQueue/ArrayListPriorityQueue.iml" />
       <module fileurl="file://$PROJECT_DIR$/Binary Search Trees/Binary Search Trees.iml" filepath="$PROJECT_DIR$/Binary Search Trees/Binary Search Trees.iml" />
       <module fileurl="file://$PROJECT_DIR$/EMDirectory/EMDirectory.iml" filepath="$PROJECT_DIR$/EMDirectory/EMDirectory.iml" />
       <module fileurl="file://$PROJECT_DIR$/EraseObject/EraseObject.iml" filepath="$PROJECT_DIR$/EraseObject/EraseObject.iml" />

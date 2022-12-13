@@ -19,6 +19,7 @@ public class Arraylist<E>
             myArray = temp;
         }
         myArray[mySize] = obj;
+        mySize++;
     }
 
     public void add(int index, E obj)
@@ -37,6 +38,7 @@ public class Arraylist<E>
             myArray[i] = myArray[i-1];
         }
         myArray[index] = obj;
+        mySize++;
     }
 
     public Object remove(int index)
