@@ -25,7 +25,7 @@ public class Arraylist<E>
     public void add(int index, E obj)
     {
         if (index < 0 || index > mySize)
-            throw new IndexOutOfBoundsException();
+            throw new ArrayIndexOutOfBoundsException();
         if (mySize>=myArray.length)
         {
             E[] temp = (E[]) new Object[myArray.length * 2];
@@ -41,9 +41,27 @@ public class Arraylist<E>
         mySize++;
     }
 
-    public Object remove(int index)
+    public E set(int index, E obj)
     {
-        return null;
+        if (index < 0 || index >= mySize)
+            throw new ArrayIndexOutOfBoundsException();
+        E temp = myArray[index];
+        myArray[index] = obj;
+        return temp;
+    }
+
+    public E remove(int index)
+    {
+        if (index < 0 || index >= mySize)
+            throw new ArrayIndexOutOfBoundsException();
+        for (; index < mySize; index++)
+        {
+            myArray[index] = myArray[index+1];
+        }
+        E temp = myArray[index+1];
+        myArray[index+1] = null;
+        mySize--;
+        return temp;
     }
 
     public int size()
@@ -54,7 +72,7 @@ public class Arraylist<E>
     public E get(int index)
     {
         if (index < 0 || index > mySize)
-            throw new IndexOutOfBoundsException();
+            throw new ArrayIndexOutOfBoundsException();
         return myArray[index];
     }
 }
