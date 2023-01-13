@@ -129,20 +129,8 @@ public class TreeStats {
     do{
       System.out.println("Binary tree menu\n");
       System.out.println(" (1) Fill the tree from a file");
-      System.out.println(" (2) Preorder output");
-      System.out.println(" (3) Inorder output");
-      System.out.println(" (4) Postorder output");
-      System.out.println(" (5) Count nodes in tree");
-      System.out.println(" (6) Count leaves in tree");
-      System.out.println(" (7) Find the height of the tree");
-      System.out.println(" (8) Find the width of the tree");
-      System.out.println(" (9) Clear the tree");
-      System.out.println("(10) Interchange the tree(mirror image)");
-      System.out.println("(11) Print level");
-      System.out.println("(12) isAncestor");
-      System.out.println("(13) Find");
-      System.out.println("(14) Delete");
-      System.out.println("(15) print levels");
+      System.out.println(" (2) Inorder output");
+      System.out.println(" (3) PrintByLevel");
       System.out.println("(Q) Quit\n");
       System.out.print("Choice ---> ");
       choice = console.nextLine();
@@ -155,64 +143,17 @@ public class TreeStats {
           case 1 :
             readData(root);
             break;
-          case 2 :
-            System.out.println();
-            System.out.println("Tree in preorder\n");
-            System.out.println();
-            root.printPreorder();
-            System.out.println();
-            break;
-          case 3 :
+          case 2:
             System.out.println();
             System.out.println("Tree in order\n");
             System.out.println();
             root.printInOrder();
             System.out.println();
             break;
-          case 4 :
+          case 3:
             System.out.println();
-            System.out.println("Tree in postorder\n");
-            System.out.println();
-            root.printPostorder();
-            System.out.println();
-            break;
-          case 5 :
-            System.out.println("Number of nodes = " + root.countNodes());
-            System.out.println();
-            break;
-          case 6 :
-            System.out.println("Number of leaves = " + root.countLeaves ());
-            System.out.println();
-            break;
-          case 7 :
-            System.out.println("Tree Height: " + root.height());
-            break;
-          case 8 :
-            System.out.println("Width: " + root.width());
-            break;
-          case 9 :
-            System.out.println("Tree cleared");
-            root.clearTree();
-            break;
-          case 10 :
-            System.out.println("Tree interchanged");
-            root.interchange();
-            break;
-          case 11 :
-            testLevel(root);
-            break;
-          case 12 :
-            testAncestor(root);
-            break;
-          case 13 :
-            testFind(root);
-            break;
-          case 14 :
-            testDelete(root);
-            break;
-          case 15 :
-            root.printLevel();
-            break;
+            root.nonrecursivePrintLevel();
+            System.out.println("\n");
         }
       }
     }

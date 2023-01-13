@@ -140,7 +140,21 @@ public class BinarySearchTree
         while (!queue.isEmpty());
 
     }
-    //169
+
+    public void nonrecursivePrintLevel()
+    {
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(myRoot);
+        while (!queue.isEmpty())
+        {
+            TreeNode temp = queue.remove();
+            if (temp.getLeft() != null)
+                queue.add(temp.getLeft());
+            if (temp.getRight() != null)
+                queue.add(temp.getRight());
+            System.out.print(temp.getValue() + " ");
+        }
+    }
 
     public void printPreorder(){
         // post: prints the data fields of the tree, one per line
