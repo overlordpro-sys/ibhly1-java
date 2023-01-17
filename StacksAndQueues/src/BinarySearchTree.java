@@ -101,7 +101,7 @@ public class BinarySearchTree
         }
     }
 
-    public void printInOrder()
+    public void printInorderNonrecursive()
     {
         Stack<TreeNode> stack = new Stack<TreeNode>();
         TreeNode temp = myRoot;
@@ -115,7 +115,7 @@ public class BinarySearchTree
             if (!stack.isEmpty())
             {
                 temp = stack.pop();
-                System.out.println(temp.getValue());
+                System.out.print(temp.getValue() + " ");
                 temp = temp.getRight();
             }
 
@@ -141,7 +141,7 @@ public class BinarySearchTree
 
     }
 
-    public void nonrecursivePrintLevel()
+    public void printLevelNonrecursive()
     {
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
         queue.add(myRoot);

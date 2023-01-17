@@ -9,41 +9,39 @@ public class RPNCalcDriver
     {
         Scanner console = new Scanner(System.in);
         RPNCalc calc = new RPNCalc();
-        Queue<String> expression =  new LinkedList<String>();
+        Queue<Character> expression = new LinkedList<Character>();
 
-        String equation = "";
         String input;
         do
         {
-            System.out.print("\n Press enter to get the solution or input your number / operation (Enter 'Q' to exit): ");
-            input = console.nextLine();
-            if (input.equals(""))
+            calc.emptyStack();
+            do
             {
-                System.out.print(equation + calc.getResult());
-                System.out.println();
-                continue;
-            }
-            char character = input.charAt(0);
-            try
-            {
-                int num = Integer.parseInt(String.valueOf(character));
-                equation += num + "  ";
-                calc.push(num);
-            } catch (NumberFormatException e)
-            {
-                if (Arrays.asList('+', '-', '*', '/').contains(character))
+                System.out.print("Input your single-digit integers / operation (Enter 'q' to exit and evaluate): ");
+                input = console.nextLine();
+                char character = input.charAt(0);
+                if (Character.isDigit(character))
                 {
-                    if (calc.operation(character))
-                    {
-                        equation += character + "  ";
-                    }
-                } else
-                    System.out.println("Invalid input");
+                    int num = Character.getNumericValue(character);
+                    calc.push(num);
+                    expression.add(character);
+                }
+                else if (Arrays.asList('+','-','*','/').contains(character))
+                {
+                    calc.operation(character);
+                    expression.add(character);
+                }
             }
-            System.out.print(equation);
-            System.out.println();
-        }
-        while(!input.equals("Q"));
-    }
+            while(!input.equals("q"));
 
+            while (!expression.isEmpty())
+            {
+                System.out.print(expression.remove()+" ");
+            }
+            System.out.print(calc.getResult() + "\n");
+
+            System.out.print("\n Continue? (y or n): ");
+            input = console.nextLine();
+        } while(input.equals("y"));
+    }
 }

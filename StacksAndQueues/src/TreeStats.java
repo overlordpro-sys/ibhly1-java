@@ -127,10 +127,10 @@ public class TreeStats {
     String choice;
     int choiceNum;
     do{
-      System.out.println("Binary tree menu\n");
-      System.out.println(" (1) Fill the tree from a file");
-      System.out.println(" (2) Inorder output");
-      System.out.println(" (3) PrintByLevel");
+      System.out.println("Queue Stack Binary tree menu\n");
+      System.out.println("(1) Fill the tree from a file");
+      System.out.println("(2) Inorder output");
+      System.out.println("(3) PrintByLevel");
       System.out.println("(Q) Quit\n");
       System.out.print("Choice ---> ");
       choice = console.nextLine();
@@ -147,12 +147,12 @@ public class TreeStats {
             System.out.println();
             System.out.println("Tree in order\n");
             System.out.println();
-            root.printInOrder();
-            System.out.println();
+            root.printInorderNonrecursive();
+            System.out.println("\n");
             break;
           case 3:
             System.out.println();
-            root.nonrecursivePrintLevel();
+            root.printLevelNonrecursive();
             System.out.println("\n");
         }
       }
