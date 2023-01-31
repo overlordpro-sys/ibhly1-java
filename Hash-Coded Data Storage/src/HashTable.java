@@ -84,9 +84,16 @@ public class HashTable
             int length = 0;
             // left off here
         }
-
-
-
         return 0;
+    }
+
+    public void printTable()
+    {
+        for (int i = 0; i<capacity; i++)
+        {
+            System.out.print(i + ": ");
+
+            while(myHashTable[i].getNext()!=null)
+        }
     }
 }
