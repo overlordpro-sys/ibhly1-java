@@ -43,16 +43,7 @@ public class HashTable
     public void add(Object obj)
     {
         // add to array in location determined by call to hashCode()
-        ListNode cur = myHashTable[obj.hashCode()];
-        if (cur==null)
-            myHashTable[obj.hashCode()] = new ListNode(obj,null);
-        else {
-            while (cur.getNext() != null)
-            {
-                cur = cur.getNext();
-            }
-            cur.setNext(new ListNode(obj, null));
-        }
+        myHashTable[obj.hashCode()] = new ListNode(obj, myHashTable[obj.hashCode()]);
         size++;
     }
 
@@ -60,7 +51,15 @@ public class HashTable
     {
         // will attempt to find idToFind in table, if found return inv amount,
         // else return null  (use hashCode to find location, if it's in there)
-        return myHashTable[target.hashCode()];
+        ListNode temp = myHashTable[target.hashCode()];
+        while (temp!=null)
+        {
+            if (temp.getValue().equals(target))
+                return temp.getValue();
+            else
+                temp=temp.getNext();
+        }
+        return null;
     }
 
     public int getNumberOfNulls()
@@ -78,13 +77,34 @@ public class HashTable
 
     public int getLongestList ()
     {
-        int max;
+        int max = 0;
         for (ListNode current : myHashTable)
         {
             int length = 0;
-            // left off here
+            while(current != null)
+            {
+                current=current.getNext();
+                length++;
+            }
+            if (length > max)
+                max=length;
         }
-        return 0;
+        return max;
+    }
+
+    public double getAverageLength ()
+    {
+        int total = 0;
+        for (ListNode current : myHashTable)
+        {
+
+            while(current != null)
+            {
+                current=current.getNext();
+                total++;
+            }
+        }
+        return (double)total/size;
     }
 
     public void printTable()
@@ -92,8 +112,13 @@ public class HashTable
         for (int i = 0; i<capacity; i++)
         {
             System.out.print(i + ": ");
-
-            while(myHashTable[i].getNext()!=null)
+            ListNode temp = myHashTable[i];
+            while(temp != null)
+            {
+                System.out.print(temp.getValue() + " | ");
+                temp=temp.getNext();
+            }
+            System.out.println();
         }
     }
 }

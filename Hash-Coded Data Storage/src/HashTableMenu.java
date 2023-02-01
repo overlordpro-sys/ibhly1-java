@@ -21,24 +21,24 @@ public class HashTableMenu {
   }
 
   void testFind(HashTable temp){
-//    int idToFind;
-//    Item location;
-//
-//    System.out.println("Testing search algorithm\n");
-//    System.out.print("Enter Id value to search for (-1 to quit) --> ");
-//    idToFind = console.nextInt();
-//
-//    while (idToFind >= 0){
-//      location = (Item)temp.find(new Item(idToFind, 0));
-//      if (location == null)
-//        System.out.println("Id = " + idToFind + "  No such part in stock");
-//      else
-//        System.out.println("Id = " + location.getId() +
-//                           "  Inv = " + location.getInv());
-//      System.out.println();
-//      System.out.print("Enter Id value to search for (-1 to quit) --> ");
-//      idToFind = console.nextInt();
-//    }
+    int idToFind;
+    Item location;
+
+    System.out.println("Testing search algorithm\n");
+    System.out.print("Enter Id value to search for (-1 to quit) --> ");
+    idToFind = console.nextInt();
+
+    while (idToFind >= 0){
+      location = (Item)temp.find(new Item(idToFind, 0));
+      if (location == null)
+        System.out.println("Id = " + idToFind + "  No such part in stock");
+      else
+        System.out.println("Id = " + location.getId() +
+                           "  Inv = " + location.getInv());
+      System.out.println();
+      System.out.print("Enter Id value to search for (-1 to quit) --> ");
+      idToFind = console.nextInt();
+    }
   }
 
   public void testDelete(HashTable temp){
@@ -82,15 +82,14 @@ public class HashTableMenu {
     }
   }
 
-  public void mainMenu (HashTable root){
+  public void mainMenu (HashTable temp){
     String choice;
     do{
-      System.out.println("Binary tree menu\n");
+      System.out.println("HashTable menu\n");
       System.out.println("(1) Read data from disk");
-      System.out.println("(2) Print tree inorder");
-      System.out.println("(3) Search tree");
-      System.out.println("(4) Delete from tree");
-      System.out.println("(5) Count nodes in tree");
+      System.out.println("(2) Print table");
+      System.out.println("(3) Search table");
+      System.out.println("(4) Print statistics");
       System.out.println("(Q) Quit\n");
       System.out.print("Choice ---> ");
       choice = console.nextLine() + " ";
@@ -99,25 +98,19 @@ public class HashTableMenu {
       if ('1' <= choice.charAt(0) && choice.charAt(0) <= '5'){
         switch (choice.charAt(0)){
           case '1' :
-            readData(root);
+            readData(temp);
             break;
           case '2' :
             System.out.println();
-            System.out.println("The tree printed inorder\n");
-            System.out.printf("%6s%6s","Id","Inv");
-            System.out.println();
-//            root.printInorder();
+            temp.printTable();
             System.out.println();
             break;
           case '3' :
-            testFind(root);
+            testFind(temp);
             break;
           case '4' :
-            testDelete(root);
-            break;
-          case '5' :
-//            System.out.println("Number of nodes = " + root.countNodes ());
-            System.out.println();
+            temp.getLongestList();
+            temp.getNumberOfNulls();
             break;
         }
       }

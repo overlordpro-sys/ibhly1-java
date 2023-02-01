@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class Hashing
 {
-    HashTable table;
+    private HashTable table;
 
     final int TABLESIZE = 600;
 
@@ -51,7 +51,9 @@ public class Hashing
     public void stats()
     {
         // will print out required stats for this lab
-
+        System.out.println("% null pointers: "+ (double)table.getNumberOfNulls()/table.getCapacity()*100);
+        System.out.println("Average length of (non-null) linked lists: " + table.getAverageLength());
+        System.out.println("Longest LinkedList in table: " + table.getLongestList());
 
 
     }
@@ -66,9 +68,8 @@ public class Hashing
         {
 
             inFile = new Scanner(new File(fileName));
-
-            int howMany = inFile.nextInt();
-            for (int k = 1; k <= howMany; k++)
+//            int howMany = inFile.nextInt();
+            for (int k = 1; k <= 400; k++)
             {
                 id = inFile.nextInt();
                 inv = inFile.nextInt();
@@ -79,5 +80,10 @@ public class Hashing
         {
             System.out.println("Error: " + i.getMessage());
         }
+    }
+
+    public void printTable()
+    {
+        table.printTable();
     }
 }
