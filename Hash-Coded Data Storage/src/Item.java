@@ -44,7 +44,7 @@ public class Item implements Comparable
 
   public int hashCode()
   {
-    return myId/40;
+    return myId/41;
 	// code this method
 
 
