@@ -44,15 +44,15 @@ public class Item implements Comparable
 
   public int hashCode()
   {
-    String num = String.format("%05d", myId);
-//    int temp = 486181;
-    int one = Integer.valueOf(num.substring(0,3));
-    int two = Integer.valueOf(num.substring(3));
-    double temp = Math.hypot(one,two) * 13.3;
-    double temp2 = Math.pow(temp, 7.77);
+//    String num = String.format("%05d", myId);
+////    int temp = 486181;
+//    int one = Integer.valueOf(num.substring(0,3));
+//    int two = Integer.valueOf(num.substring(3));
+//    double temp = Math.hypot(one,two) * 13.3;
+//    double temp2 = Math.pow(temp, 7.77);
 
 
-    return (int)(temp2 % 599);
+    return myId*1007 % 577;
 
 
 
