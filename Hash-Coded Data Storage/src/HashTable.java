@@ -43,8 +43,10 @@ public class HashTable
     public void add(Object obj)
     {
         // add to array in location determined by call to hashCode()
+        if (myHashTable[obj.hashCode()] == null)
+         size++;
         myHashTable[obj.hashCode()] = new ListNode(obj, myHashTable[obj.hashCode()]);
-        size++;
+
     }
 
     public Object find(Comparable target)
@@ -94,17 +96,19 @@ public class HashTable
 
     public double getAverageLength ()
     {
-        int total = 0;
-        for (ListNode current : myHashTable)
+        double total = 0;
+        for (int i = 0; i < capacity; i++)
         {
-
-            while(current != null)
+            int nodeTotal = 0;
+            ListNode temp = myHashTable[i];
+            while(temp != null)
             {
-                current=current.getNext();
-                total++;
+                temp=temp.getNext();
+                nodeTotal++;
             }
+            total+=nodeTotal;
         }
-        return (double)total/size;
+        return total/size;
     }
 
     public void printTable()

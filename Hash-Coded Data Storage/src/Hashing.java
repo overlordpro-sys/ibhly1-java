@@ -54,8 +54,35 @@ public class Hashing
         System.out.println("% null pointers: "+ (double)table.getNumberOfNulls()/table.getCapacity()*100);
         System.out.println("Average length of (non-null) linked lists: " + table.getAverageLength());
         System.out.println("Longest LinkedList in table: " + table.getLongestList());
+    }
 
+    public double percent()
+    {
+        return (double)table.getNumberOfNulls()/table.getCapacity()*100;
+    }
 
+    public void loadFile(double scalar, double exponent)
+    {
+        Scanner inFile;
+
+        String fileName = "file400.txt";
+        int id, inv;
+        try
+        {
+
+            inFile = new Scanner(new File(fileName));
+//            int howMany = inFile.nextInt();
+            for (int k = 1; k <= 400; k++)
+            {
+                id = inFile.nextInt();
+                inv = inFile.nextInt();
+                table.add(new Item(id, inv, scalar, exponent));
+            }
+        }
+        catch(IOException i)
+        {
+            System.out.println("Error: " + i.getMessage());
+        }
     }
 
     public void loadFile()
