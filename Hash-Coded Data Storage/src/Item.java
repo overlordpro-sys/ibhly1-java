@@ -9,6 +9,11 @@ public class Item implements Comparable
 {
   private int myId;
   private int myInv;
+  private double scalar;
+  private double exponent;
+
+
+
 
   /**
    *  Constructor for the Item object
@@ -20,6 +25,14 @@ public class Item implements Comparable
   {
     myId = id;
     myInv = inv;
+  }
+
+  public Item(int id, int inv, double scale, double exp)
+  {
+    myId = id;
+    myInv = inv;
+    scalar = scale;
+    exponent = exp;
   }
 
   /**
@@ -46,18 +59,18 @@ public class Item implements Comparable
   {
 //    600 is good for myId*600
     String num = String.format("%05d", myId*600);
-//    int temp = 486181;
-    int one = Integer.valueOf(num.substring(0,3));
-    int two = Integer.valueOf(num.substring(3));
-    double temp = Math.hypot(one,two) * 13.3;
-    double temp2 = Math.pow(temp, 7.77);
+
+//    int one = Integer.valueOf(num.substring(0,2));
+//    int two = Integer.valueOf(num.substring(2));
+//    double temp = Math.hypot(one,two) * scalar;
+//    double temp2 = Math.pow(temp, exponent);
+//    return (int)(temp2 % 599);
+
+    int one = Integer.valueOf(num.substring(0,2));
+    int two = Integer.valueOf(num.substring(1));
+    double temp = Math.hypot(one,two) * 251.04229273894168;
+    double temp2 = Math.pow(temp, 7.778787910153129);
     return (int)(temp2 % 599);
-
-
-
-
-
-	// code this method
 }
 
 
