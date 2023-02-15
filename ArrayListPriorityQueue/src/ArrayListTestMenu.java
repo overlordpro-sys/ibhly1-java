@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 public class ArrayListTestMenu
 {
@@ -8,6 +10,25 @@ public class ArrayListTestMenu
     {
         console = new Scanner(System.in);
         myList = new Arraylist<String>();
+    }
+
+    private void loadFile(String fileName)
+    {
+        int id, inv;
+        Scanner inFile;
+        try
+        {
+            inFile = new Scanner(new File(fileName));
+
+            while (inFile.hasNext())
+            {
+                id = inFile.nextInt();
+                inv = inFile.nextInt();
+            }
+        } catch (IOException i)
+        {
+            System.out.println("Error: " + i.getMessage());
+        }
     }
 
     private void singleInput()

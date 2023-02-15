@@ -60,7 +60,7 @@ public class HeapSort
         {
             while (!myHeapPQ.isEmpty())
             {
-                HeapSortOutput.write("\n" + myHeapPQ.remove());
+                HeapSortOutput.write(myHeapPQ.remove() + "\n");
             }
         }
         catch (IOException i)
