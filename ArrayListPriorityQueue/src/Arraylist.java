@@ -5,33 +5,33 @@ public class Arraylist<E>
     
     public Arraylist()
     {
-        myArray = (E[])new Object[10];
+        myArray = (E[])new Object[2];
         mySize = 0;
     }
     
     public void add(E obj)
     {
-        if (mySize>=myArray.length)
-        {
-            E[] temp = (E[]) new Object[myArray.length * 2];
-            for (int i = 0; i < myArray.length; i++)
-                temp[i] = myArray[i];
-            myArray = temp;
-        }
+        if (mySize==myArray.length)
+            doubleSize();
         myArray[mySize] = obj;
         mySize++;
+    }
+
+    private void doubleSize()
+    {
+        E[] temp = (E[]) new Object[myArray.length * 2];
+        for (int i = 0; i < myArray.length; i++)
+            temp[i] = myArray[i];
+        myArray = temp;
     }
 
     public void add(int index, E obj)
     {
         if (index < 0 || index > mySize)
             throw new ArrayIndexOutOfBoundsException();
-        if (mySize>=myArray.length)
+        if (mySize==myArray.length)
         {
-            E[] temp = (E[]) new Object[myArray.length * 2];
-            for (int i = 0; i < myArray.length; i++)
-                temp[i] = myArray[i];
-            myArray = temp;
+            doubleSize();
         }
         for (int i = mySize; i > index; i--)
         {
@@ -54,12 +54,13 @@ public class Arraylist<E>
     {
         if (index < 0 || index >= mySize)
             throw new ArrayIndexOutOfBoundsException();
+        E temp = myArray[index];
         for (; index < mySize; index++)
         {
             myArray[index] = myArray[index+1];
         }
-        E temp = myArray[index+1];
-        myArray[index+1] = null;
+        if (index < myArray.length)
+            myArray[index] = null;
         mySize--;
         return temp;
     }
@@ -74,5 +75,15 @@ public class Arraylist<E>
         if (index < 0 || index > mySize)
             throw new ArrayIndexOutOfBoundsException();
         return myArray[index];
+    }
+
+    public void printArray()
+    {
+        int index = 0;
+        while (index != myArray.length)
+        {
+            System.out.print(myArray[index]);
+            index++;
+        }
     }
 }

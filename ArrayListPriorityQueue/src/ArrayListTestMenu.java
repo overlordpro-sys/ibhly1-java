@@ -170,12 +170,13 @@ public class ArrayListTestMenu
             System.out.println(" (6) Get");
             System.out.println(" (7) Remove");
             System.out.println(" (8) Print List");
+            System.out.println(" (9) Print List");
             System.out.println("(-1) Quit\n");
             System.out.print("Choice ---> ");
             choice = console.nextInt();
             System.out.println();
 
-            if (choice > 0 && choice <= 8)
+            if (choice > 0 && choice <= 9)
             {
                 switch(choice)
                 {
@@ -213,7 +214,8 @@ public class ArrayListTestMenu
                     case 8:
                         printList();
                         break;
-
+                    case 9:
+                        myList.printArray();
                 }
             }
             else if(choice == -1)
