@@ -6,6 +6,5 @@ public class ArrayListDriver
     {
         ArrayListTestMenu menu = new ArrayListTestMenu();
         menu.mainMenu();
-        //PRINT ERROR MESSAGE NOT INVALID INPUT
     }
 }

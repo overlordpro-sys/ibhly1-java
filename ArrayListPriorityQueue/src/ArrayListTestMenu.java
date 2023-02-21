@@ -71,7 +71,7 @@ public class ArrayListTestMenu
             }
             catch(ArrayIndexOutOfBoundsException e)
             {
-                System.out.println("Invalid Input. No Objects were added to the list");
+                System.out.println(e.getMessage());
             }
 
         }while(index != -1);
@@ -101,7 +101,7 @@ public class ArrayListTestMenu
             }
             catch(ArrayIndexOutOfBoundsException e)
             {
-                System.out.println("Invalid Input. No changes were made to the list");
+                System.out.println(e.getMessage());
             }
         }while(item.equals("-1") == false);
     }
@@ -129,7 +129,7 @@ public class ArrayListTestMenu
                     System.out.println("Object at index " + index + " is: " + gotten);
                 }
                 catch(ArrayIndexOutOfBoundsException e){
-                    System.out.println("No Object was found at " + index);
+                    System.out.println(e.getMessage());
                 }
             }
         }while(index != -1);
@@ -150,7 +150,7 @@ public class ArrayListTestMenu
                     System.out.println("Object at index " + index + " has been removed.");
                 }
                 catch(ArrayIndexOutOfBoundsException e){
-                    System.out.println("Invalid Input");
+                    System.out.println(e.getMessage());
                 }
             }
         }while(index != -1);
