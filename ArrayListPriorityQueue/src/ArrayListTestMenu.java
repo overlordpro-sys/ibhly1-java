@@ -67,9 +67,9 @@ public class ArrayListTestMenu
             try
             {
                 myList.add(index,input);
-                System.out.println("Object '" + input + "' has been added to slot " + index);
+                System.out.println("String '" + input + "' has been added to slot " + index);
             }
-            catch(ArrayIndexOutOfBoundsException e)
+            catch(IndexOutOfBoundsException e)
             {
                 System.out.println(e.getMessage());
             }
@@ -99,7 +99,7 @@ public class ArrayListTestMenu
                 String temp = myList.set(index,item);
                 System.out.println(String.format("Object '%s' at %d has been set to %s", temp, index, item));
             }
-            catch(ArrayIndexOutOfBoundsException e)
+            catch(IndexOutOfBoundsException e)
             {
                 System.out.println(e.getMessage());
             }
@@ -112,6 +112,7 @@ public class ArrayListTestMenu
         {
             System.out.println(myList.get(i));
         }
+        System.out.println();
     }
 
     private void get()
@@ -128,7 +129,7 @@ public class ArrayListTestMenu
                     Object gotten = myList.get(index);
                     System.out.println("Object at index " + index + " is: " + gotten);
                 }
-                catch(ArrayIndexOutOfBoundsException e){
+                catch(IndexOutOfBoundsException e){
                     System.out.println(e.getMessage());
                 }
             }
@@ -149,7 +150,7 @@ public class ArrayListTestMenu
                     myList.remove(index);
                     System.out.println("Object at index " + index + " has been removed.");
                 }
-                catch(ArrayIndexOutOfBoundsException e){
+                catch(IndexOutOfBoundsException e){
                     System.out.println(e.getMessage());
                 }
             }
@@ -170,13 +171,12 @@ public class ArrayListTestMenu
             System.out.println(" (6) Get");
             System.out.println(" (7) Remove");
             System.out.println(" (8) Print List");
-            System.out.println(" (9) Print List");
             System.out.println("(-1) Quit\n");
             System.out.print("Choice ---> ");
             choice = console.nextInt();
             System.out.println();
 
-            if (choice > 0 && choice <= 9)
+            if (choice > 0 && choice <= 8)
             {
                 switch(choice)
                 {
@@ -214,8 +214,6 @@ public class ArrayListTestMenu
                     case 8:
                         printList();
                         break;
-                    case 9:
-                        myList.printArray();
                 }
             }
             else if(choice == -1)

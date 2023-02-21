@@ -5,8 +5,21 @@ public class Arraylist<E>
     
     public Arraylist()
     {
-        myArray = (E[])new Object[2];
+        myArray = (E[])new Object[10];
         mySize = 0;
+    }
+
+    public Arraylist(E object)
+    {
+        this();
+        add(object);
+    }
+
+    public Arraylist(E[] array)
+    {
+        this();
+        for (E object : array)
+            add(object);
     }
     
     public void add(E obj)
@@ -28,7 +41,7 @@ public class Arraylist<E>
     public void add(int index, E obj)
     {
         if (index < 0 || index > mySize)
-            throw new ArrayIndexOutOfBoundsException("IndexOutOfBoundsException: Index: " + index + ", Size: " + mySize);
+            throw new IndexOutOfBoundsException("IndexOutOfBoundsException: Index: " + index + ", Size: " + mySize);
         if (mySize==myArray.length)
         {
             doubleSize();
@@ -44,7 +57,7 @@ public class Arraylist<E>
     public E set(int index, E obj)
     {
         if (index < 0 || index >= mySize)
-            throw new ArrayIndexOutOfBoundsException("IndexOutOfBoundsException: Index " + index + " out of bounds for length " + mySize);
+            throw new IndexOutOfBoundsException("IndexOutOfBoundsException: Index " + index + " out of bounds for length " + mySize);
         E temp = myArray[index];
         myArray[index] = obj;
         return temp;
@@ -53,7 +66,7 @@ public class Arraylist<E>
     public E remove(int index)
     {
         if (index < 0 || index >= mySize)
-            throw new ArrayIndexOutOfBoundsException("IndexOutOfBoundsException: Index " + index + " out of bounds for length " + mySize);
+            throw new IndexOutOfBoundsException("IndexOutOfBoundsException: Index " + index + " out of bounds for length " + mySize);
         E temp = myArray[index];
         for (; index < mySize; index++)
         {
@@ -72,18 +85,8 @@ public class Arraylist<E>
 
     public E get(int index)
     {
-        if (index < 0 || index > mySize)
-            throw new ArrayIndexOutOfBoundsException("IndexOutOfBoundsException: Index " + index + " out of bounds for length " + mySize);
+        if (index < 0 || index >= mySize)
+            throw new IndexOutOfBoundsException("IndexOutOfBoundsException: Index " + index + " out of bounds for length " + mySize);
         return myArray[index];
-    }
-
-    public void printArray()
-    {
-        int index = 0;
-        while (index != myArray.length)
-        {
-            System.out.print(myArray[index]);
-            index++;
-        }
     }
 }
