@@ -43,13 +43,10 @@ public class Arraylist<E>
         if (index < 0 || index > mySize)
             throw new IndexOutOfBoundsException("IndexOutOfBoundsException: Index: " + index + ", Size: " + mySize);
         if (mySize==myArray.length)
-        {
             doubleSize();
-        }
+
         for (int i = mySize; i > index; i--)
-        {
             myArray[i] = myArray[i-1];
-        }
         myArray[index] = obj;
         mySize++;
     }
@@ -68,12 +65,9 @@ public class Arraylist<E>
         if (index < 0 || index >= mySize)
             throw new IndexOutOfBoundsException("IndexOutOfBoundsException: Index " + index + " out of bounds for length " + mySize);
         E temp = myArray[index];
-        for (; index < mySize; index++)
-        {
+        for (; index < mySize-1; index++)
             myArray[index] = myArray[index+1];
-        }
-        if (index < myArray.length)
-            myArray[index] = null;
+        myArray[index] = null;
         mySize--;
         return temp;
     }

@@ -16,10 +16,6 @@ public class PriorityQueue<E>
     private void heapUp()
     {
 
-        while (list.get(list.size()-1).compareTo(list.get(list.size()/2)))
-        {
-
-        }
     }
 
     public boolean isEmpty()
