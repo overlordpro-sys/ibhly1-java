@@ -9,10 +9,14 @@ public class Arraylist<E>
         mySize = 0;
     }
 
-    public Arraylist(E object)
+    public Arraylist(int size)
     {
-        this();
-        add(object);
+        if (size < 0)
+        {
+            throw new IllegalArgumentException("Illegal Capacity: "+size);
+        }
+        myArray = (E[])new Object[size];
+        mySize = 0;
     }
 
     public Arraylist(E[] array)
@@ -21,6 +25,8 @@ public class Arraylist<E>
         for (E object : array)
             add(object);
     }
+
+
     
     public void add(E obj)
     {
@@ -32,6 +38,11 @@ public class Arraylist<E>
 
     private void doubleSize()
     {
+        if (myArray.length==0)
+        {
+            myArray = (E[]) new Object[1];
+            return;
+        }
         E[] temp = (E[]) new Object[myArray.length * 2];
         for (int i = 0; i < myArray.length; i++)
             temp[i] = myArray[i];
