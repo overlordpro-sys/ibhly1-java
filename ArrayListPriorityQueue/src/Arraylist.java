@@ -49,7 +49,7 @@ public class Arraylist<E>
         myArray = temp;
     }
 
-    public void add(int index, E obj)
+    public boolean add(int index, E obj)
     {
         if (index < 0 || index > mySize)
             throw new IndexOutOfBoundsException("IndexOutOfBoundsException: Index: " + index + ", Size: " + mySize);
@@ -60,6 +60,7 @@ public class Arraylist<E>
             myArray[i] = myArray[i-1];
         myArray[index] = obj;
         mySize++;
+        return true;
     }
 
     public E set(int index, E obj)
