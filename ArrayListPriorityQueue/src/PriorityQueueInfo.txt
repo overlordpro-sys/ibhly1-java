@@ -1,4 +1,4 @@
-PriorityQueue<E> class will have:
+PriorityQueueScratch<E> class will have:
 
 private Arraylist<E> (yours from scratch)
 
