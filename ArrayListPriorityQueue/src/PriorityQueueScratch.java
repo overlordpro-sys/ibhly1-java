@@ -4,7 +4,7 @@ public class PriorityQueueScratch<E>
 
     public PriorityQueueScratch()
     {
-        myList = new Arraylist<>(1);
+        myList = new Arraylist<>();
         myList.add(null);
     }
 
@@ -26,11 +26,7 @@ public class PriorityQueueScratch<E>
 
     public boolean isEmpty()
     {
-        if (myList.size()==1)
-            return true;
-        if (myList.get(1) == null)
-            return true;
-        return false;
+      return (myList.size()==1);
     }
 
     public E peek()
@@ -43,7 +39,7 @@ public class PriorityQueueScratch<E>
     public E remove()
     {
         if (myList.size() < 2)
-            throw new java.util.NoSuchElementException();
+            throw new java.util.NoSuchElementException("java.util.NoSuchElementException");
         E temp = myList.get(1);
         heapDown();
         return temp;
@@ -51,26 +47,25 @@ public class PriorityQueueScratch<E>
 
     private void heapDown()
     {
-        if (myList.size() == 2)
+        E temp = myList.remove(myList.size()-1);
+        if (myList.size() >= 2)
         {
-            myList.remove(1);
-            return;
-        }
-        myList.set(1, myList.remove(myList.size()-1));
-        int index = 1;
-        while (index*2 < myList.size())
-        {
-            Comparable object1 = (Comparable)myList.get(index*2);
-            int toSwap = index*2;
-            if (index*2+1< myList.size() && object1.compareTo(myList.get(index*2+1)) > 0 )
-                toSwap = index*2+1;
-            if (((Comparable)myList.get(toSwap)).compareTo(myList.get(index))< 0)
+            myList.set(1, temp);
+            int index = 1;
+            while (index*2 < myList.size())
             {
-                swap(index, toSwap);
-                index=toSwap;
+                Comparable object1 = (Comparable)myList.get(index*2);
+                int toSwap = index*2;
+                if (index * 2 + 1 < myList.size() && object1.compareTo(myList.get(index * 2 + 1)) > 0 )
+                    toSwap = index*2+1;
+                if (((Comparable)myList.get(toSwap)).compareTo(myList.get(index))< 0)
+                {
+                    swap(index, toSwap);
+                    index=toSwap;
+                }
+                else
+                    return;
             }
-            else
-                return;
         }
     }
 
@@ -81,7 +76,7 @@ public class PriorityQueueScratch<E>
         myList.set(index2, temp);
     }
 
-    public void printAsTree()
+    public void printInRows()
     {
         int index = 1;
         int perRow = 1;

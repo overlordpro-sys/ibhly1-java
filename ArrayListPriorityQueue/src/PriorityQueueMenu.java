@@ -7,6 +7,7 @@
  * Modified by Jason Quesenberry and Nancy Quesenberry
  * February 9, 2006
  */
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.io.*;
 
@@ -21,17 +22,21 @@ public class PriorityQueueMenu{
   }
 
   public void remove(){
-    if (queue.isEmpty())
-      System.out.print("Priority Queue is empty");
-    else
-      System.out.print("Item at top removed: " + queue.remove());
+    try
+    {
+      System.out.println("Item at top removed: " + queue.remove());
+    }
+    catch (NoSuchElementException e)
+    {
+      System.out.println(e.getMessage());
+    }
   }
 
   public void peek(){
     if (queue.isEmpty())
-      System.out.print("Priority Queue is empty");
+      System.out.println("Priority Queue is empty\n");
     else
-      System.out.print("Item at top peeked: " + queue.peek());
+      System.out.println("Item at top peeked: " + queue.peek());
   }
 
   public void readData (){
@@ -82,13 +87,12 @@ public class PriorityQueueMenu{
       System.out.println("(3) isEmpty");
       System.out.println("(4) Peek");
       System.out.println("(5) Remove");
-      System.out.println("(6) Print Tree");
       System.out.println("(Q) Quit\n");
       System.out.print("Choice ---> ");
       choice = console.nextLine() + " ";
       System.out.println();
 
-      if ('1' <= choice.charAt(0) && choice.charAt(0) <= '6'){
+      if ('1' <= choice.charAt(0) && choice.charAt(0) <= '5'){
         switch (choice.charAt(0)){
           case '1' :
             readData();
@@ -97,9 +101,9 @@ public class PriorityQueueMenu{
             addItem();
             break;
           case '3' :
-            System.out.print(queue.isEmpty()
-                    ? "Queue is empty"
-                    : "Queue is not empty");
+            System.out.println(queue.isEmpty()
+                    ? "Queue is empty\n"
+                    : "Queue is not empty\n");
             break;
           case '4' :
             peek();
@@ -108,7 +112,7 @@ public class PriorityQueueMenu{
             remove();
             break;
           case '6' :
-            queue.printAsTree();
+            queue.printInRows();
             break;
         }
       }
